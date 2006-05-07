@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <install4j version="3.2.2">
-  <directoryPresets config="./src/main/resources" />
-  <application name="Password Tracker" distributionSourceDir="" applicationId="1550-5168-3975-4606" mediaDir="./target/installer" mediaFilePattern="%SHORT_NAME%_%PLATFORM%_%VERSION%" compression="6" lzmaCompression="false" keepModificationTimes="false" shortName="patra" publisher="S.D.I.-Consulting BVBA" publisherWeb="http://www.sdi-consulting.com" version="1.2" allPathsRelative="true" backupOnSave="true" autoSave="true" macSignature="????" javaMinVersion="1.4" javaMaxVersion="" allowBetaVM="false">
+  <directoryPresets config="./target/patra-1.2.jar" />
+  <application name="Password Tracker" distributionSourceDir="" applicationId="1550-5168-3975-4606" mediaDir="./target/" mediaFilePattern="%SHORT_NAME%_%PLATFORM%_%VERSION%" compression="6" lzmaCompression="false" keepModificationTimes="false" shortName="patra" publisher="S.D.I.-Consulting BVBA" publisherWeb="http://www.sdi-consulting.com" version="1.2" allPathsRelative="true" backupOnSave="true" autoSave="true" macSignature="????" javaMinVersion="1.4" javaMaxVersion="" allowBetaVM="false">
     <searchSequence>
       <registry />
       <envVar name="JAVA_HOME" />
@@ -15,7 +15,7 @@
       <mountPoint name="" id="2" location="lib" mode="755" />
     </mountPoints>
     <entries>
-      <fileEntry mountPoint="2" file="./target/patra-1.0.jar" overwrite="1" shared="false" mode="644" dontUninstall="false" />
+      <fileEntry mountPoint="2" file="./target/patra-1.2.jar" overwrite="1" shared="false" mode="644" dontUninstall="false" />
       <fileEntry mountPoint="2" file="./libs/jhbasic.jar" overwrite="1" shared="false" mode="644" dontUninstall="false" />
       <fileEntry mountPoint="2" file="./libs/forms_rt.jar" overwrite="1" shared="false" mode="644" dontUninstall="false" />
       <fileEntry mountPoint="2" file="./libs/looks-1.3.2.jar" overwrite="1" shared="false" mode="644" dontUninstall="false" />
