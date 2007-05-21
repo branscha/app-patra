@@ -160,7 +160,7 @@ public class Start
         // Create a frame to show our panel.
         final JDialog lStartDialog = new JDialog(aApp);
         lStartDialog.setModal(true);
-        lStartDialog.setDefaultCloseOperation(JDialog.EXIT_ON_CLOSE);
+        lStartDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         lStartDialog.setTitle(GuiUtil.getText("start.title"));
 
         // Create the panel and add it to the frame.
