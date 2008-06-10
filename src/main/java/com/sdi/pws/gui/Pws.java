@@ -51,9 +51,31 @@ public class Pws
 {
     public static void main(String[] aArgs)
     {
+        // Create and show the GUI in the Swing thread.        
+        try
+        {
+            SwingUtilities.invokeAndWait(
+                    new Runnable()
+                    {
+                        public void run()
+                        {
+                            Pws.startgGui();
+                        }
+                    }
+            );
+        }
+        catch(Exception e)
+        {
+            // Do nothing here.
+            // We cannot react in a rational way here.
+        }
+    }
+
+    private static void startgGui()
+    {
         // Set the look and feel.
-        PlasticLookAndFeel.setMyCurrentTheme(new SkyGreen());
-        try { UIManager.setLookAndFeel(new PlasticLookAndFeel()); } catch (Exception e) {;}
+        PlasticLookAndFeel.setPlasticTheme(new SkyGreen());
+        try { UIManager.setLookAndFeel(new PlasticLookAndFeel()); } catch (Exception e) {}
 
         // Load user preferences.
         final Preferences lPrefs = new PreferencesImpl();
@@ -130,7 +152,7 @@ public class Pws
         JButton lLeftCopyPwd = new JButton();
         lLeftButtonPanel.add(lLeftCopyPwd);
         // Set startup visibility.
-        try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException eIgnore){;}
+        try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException eIgnore){}
         // Set dynamic visibility.
         lGlobalPreferences.addPropertyChangeListener(Preferences.PREF_BUTTONS_LEFT, new PropertyChangeListener()
         {
@@ -153,7 +175,7 @@ public class Pws
         JButton lRightCopyPWD = new JButton();
         lRightButtonPanel.add(lRightCopyPWD);
         // Set startup visibility.
-        try{lRightButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_RIGHT));}catch(PreferencesException eIgnore){;}
+        try{lRightButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_RIGHT));}catch(PreferencesException eIgnore){}
         // Set dynamic visibility.
         lGlobalPreferences.addPropertyChangeListener(Preferences.PREF_BUTTONS_RIGHT, new PropertyChangeListener()
         {
