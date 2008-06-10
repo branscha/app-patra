@@ -30,14 +30,14 @@ import java.util.TreeSet;
 public class PwsRecordImpl
 implements PwsRecord
 {
-    private Hashtable fields = new Hashtable();
+    private Hashtable<Byte, PwsField> fields = new Hashtable<Byte, PwsField>();
 
     public PwsField get(Byte aFieldType)
     throws ModelException
     {
         if(fields.containsKey(aFieldType))
         {
-            return (PwsFieldImpl) fields.get(aFieldType);
+            return fields.get(aFieldType);
         }
         else
         {
@@ -56,9 +56,9 @@ implements PwsRecord
         return  fields.containsKey(aFieldType);
     }
 
-    public Iterator typeIterator()
+    public Iterator<Byte> typeIterator()
     {
-        SortedSet lKeys = new TreeSet(fields.keySet());
+        SortedSet<Byte> lKeys = new TreeSet<Byte>(fields.keySet());
         return lKeys.iterator();
     }
 

@@ -36,5 +36,5 @@ public interface PwsRecord
 
     boolean hasType(Byte aFieldType);
 
-    Iterator typeIterator();
+    Iterator<Byte> typeIterator();
 }

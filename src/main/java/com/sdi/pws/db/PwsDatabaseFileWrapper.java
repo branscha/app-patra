@@ -61,7 +61,7 @@ implements PwsDatabase
         target.remove(aIndex);
     }
 
-    public Iterator iterator()
+    public Iterator<PwsRecord> iterator()
     {
         return target.iterator();
     }

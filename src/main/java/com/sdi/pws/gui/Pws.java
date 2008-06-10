@@ -158,7 +158,7 @@ public class Pws
         {
             public void propertyChange(PropertyChangeEvent evt)
             {
-                try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException eIgnore){;}
+                try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException eIgnore){}
             }
         });
 
@@ -181,7 +181,7 @@ public class Pws
         {
             public void propertyChange(PropertyChangeEvent evt)
             {
-                try{lRightButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_RIGHT));}catch(PreferencesException eIgnore){;}
+                try{lRightButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_RIGHT));}catch(PreferencesException eIgnore){}
             }
         });
 
@@ -256,7 +256,7 @@ public class Pws
         // Selector.
         final TableViewSelector lTableSelector = new TableViewSelector(lFilteredTableModel, lTableView);
         final TreeViewSelector lTreeSelector = new TreeViewSelector(lTreeView);
-        final DynamicRecordSelector lRecordSelector = new DynamicRecordSelector((("tree".equals(lViewName))?(RecordSelector) lTreeSelector:(RecordSelector) lTableSelector));
+        final DynamicRecordSelector lRecordSelector = new DynamicRecordSelector((("tree".equals(lViewName))? lTreeSelector : lTableSelector));
 
         lDbHolder.addPropertyChangeListener(new PropertyChangeListener()
         {

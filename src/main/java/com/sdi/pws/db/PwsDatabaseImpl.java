@@ -32,8 +32,7 @@ import java.io.File;
 public class PwsDatabaseImpl
 implements PwsDatabase
 {
-    //private String version;
-    private List records = new ArrayList(20);
+    private List<PwsRecord> records = new ArrayList<PwsRecord>(20);
     private String passphrase;
     private Codec codec;
     private File file;
@@ -41,7 +40,7 @@ implements PwsDatabase
     private boolean changed = false;
 
     private class PwsDatabaseIterator
-    implements Iterator
+    implements Iterator<PwsRecord>
     {
         private int currentIndex = 0;
 
@@ -50,7 +49,7 @@ implements PwsDatabase
             return (currentIndex < records.size());
         }
 
-        public Object next()
+        public PwsRecord next()
         {
             return getRecord(currentIndex++);
         }
@@ -68,7 +67,7 @@ implements PwsDatabase
 
     public PwsRecord getRecord(int aIndex)
     {
-        return (PwsRecord) records.get(aIndex);
+        return records.get(aIndex);
     }
 
     public void add(PwsRecord aRecord)
@@ -81,7 +80,7 @@ implements PwsDatabase
         records.remove(aIndex);
     }
 
-    public Iterator iterator()
+    public Iterator<PwsRecord> iterator()
     {
         return new PwsDatabaseIterator();
     }

@@ -24,7 +24,6 @@ package com.sdi.pws.db;
 
 public class PwsFieldImpl implements PwsField
 {
-
     private Byte type;
     private byte[] value;
 

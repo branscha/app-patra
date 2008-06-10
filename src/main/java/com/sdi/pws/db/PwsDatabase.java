@@ -27,14 +27,50 @@ import com.sdi.pws.codec.Codec;
 import java.util.Iterator;
 import java.io.File;
 
+/**
+ * Represents a "password safe" compatible database.
+ * Note that there are different versions of this database, multiple versions
+ * can be supported by this datamodel.
+ */
 public interface PwsDatabase
 {
+    /**
+     * Get the number of entries in the database.
+     * @return The number of entries.
+     */
     int getNrRecords();
-    PwsRecord getRecord(int aIndex);
-    void add(PwsRecord aRecord);
-    void remove(int aIndex);
-    Iterator iterator();
 
+    /**
+     * Get a specific entry from the database.
+     * @param aIndex The index of the requested record. 
+     * @return The password record at that index.
+     */
+    PwsRecord getRecord(int aIndex);
+
+    /**
+     * Add a new record to the database.
+     * @param aRecord The new record to be added to the database.
+     */
+    void add(PwsRecord aRecord);
+
+    /**
+     * Remove the specified record from the database.
+     * @param aIndex The index of the record to be removed from the database.
+     */
+    void remove(int aIndex);
+
+    /**
+     * Walk over the password records in the database.
+     * @return An iterator that walks over all PwsRecords in the database.
+     */
+    Iterator<PwsRecord> iterator();
+
+    /**
+     * The version of the password database.
+     * There are codecs for different versions of the "password safe" application.
+     * It depends on the database version which features are available.
+     * @return The version of the database file.
+     */
     String getVersion();
 
     String getPassphrase();
