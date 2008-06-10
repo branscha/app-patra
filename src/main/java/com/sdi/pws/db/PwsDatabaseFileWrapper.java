@@ -27,13 +27,17 @@ import com.sdi.pws.codec.Codec;
 import java.util.Iterator;
 import java.io.File;
 
-// Temporarily mask the real file and  lets you write the database
-// to another file without changing the contents.
+/**
+ * Temporarily mask the real file and  lets you write the database
+ * to another file without changing the contents. This is used
+ * to export the database to another file without changing the original file associated
+ * with the database. 
+ */
 public class PwsDatabaseFileWrapper
 implements PwsDatabase
 {
-    PwsDatabase target;
-    File file;
+    private PwsDatabase target;
+    private File file;
 
     public PwsDatabaseFileWrapper(PwsDatabase aDb, File aFile)
     {
@@ -76,9 +80,9 @@ implements PwsDatabase
         return target.getPassphrase();
     }
 
-    public void setPassphrase(String passphrase)
+    public void setPassphrase(String aPassphrase)
     {
-        target.setPassphrase(passphrase);
+        target.setPassphrase(aPassphrase);
     }
 
     public Codec getCodec()
@@ -86,9 +90,9 @@ implements PwsDatabase
         return target.getCodec();
     }
 
-    public void setCodec(Codec codec)
+    public void setCodec(Codec aCodec)
     {
-        target.setCodec(codec);
+        target.setCodec(aCodec);
     }
 
     public File getFile()
@@ -106,9 +110,9 @@ implements PwsDatabase
         return target.getParameters();
     }
 
-    public void setParameters(String parameters)
+    public void setParameters(String aParams)
     {
-        target.setParameters(parameters);
+        target.setParameters(aParams);
     }
 
     public boolean isChanged()
@@ -120,5 +124,4 @@ implements PwsDatabase
     {
         target.setChanged(aChanged);
     }
-
 }

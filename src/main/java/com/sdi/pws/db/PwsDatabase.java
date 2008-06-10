@@ -73,18 +73,69 @@ public interface PwsDatabase
      */
     String getVersion();
 
+    /**
+     * Get the passphrase associated with this database (in plain text).
+     * @return The passphrase.
+     */
     String getPassphrase();
-    void setPassphrase(String passphrase);
 
+    /**
+     * Set the passphrase of this database (in plain text).
+     * @param aPassphrase The new passphrase of this database.
+     */
+    void setPassphrase(String aPassphrase);
+
+    /**
+     * Get the codec of this database.
+     * @return The current codec.
+     */
     Codec getCodec();
-    void setCodec(Codec codec);
 
+    /**
+     * Set the codec of this database.
+     * @param aCodec The new codec of this database.
+     */
+    void setCodec(Codec aCodec);
+
+    /**
+     * Get the file associated with this database.
+     * @return The file associated with this database or null if no file is associated with the database.
+     */
     File getFile();
-    void setFile(File file);
 
+    /**
+     * Associcate a file with the database.
+     * @param aFile The file to be associated with the database.
+     */
+    void setFile(File aFile);
+
+    /**
+     * Get the parameters used for the password generator.
+     * Password generating parameters can be associated with each entry.
+     * @return The password generator parameters.
+     */
     String getParameters();
-    void setParameters(String parameters);
 
+    /**
+     * Set new password generating parameters.
+     * Password generating parameters can be associated with each entry.
+     * @param aGenParams The password generator parameters for this record.
+     */
+    void setParameters(String aGenParams);
+
+    /**
+     * Check if this database has changed or if it has been marked as dirty.
+     * It depends on the implementation if this flag is managed automatically or if
+     * it should be  managed by the user of the database.
+     * @return A boolean indicating if the database is dirty or not.      
+     */
     boolean isChanged();
+
+    /**
+     * Mark the database as dirty.
+     * It depends on the implementation if this flag is managed automatically or if
+     * it should be  managed by the user of the database.
+     * @param aChanged The dirty flag.
+     */
     void setChanged(boolean aChanged);
 }
