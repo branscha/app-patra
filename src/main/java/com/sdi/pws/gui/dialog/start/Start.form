@@ -1,27 +1,26 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <form xmlns="http://www.intellij.com/uidesigner/form/" version="1" bind-to-class="com.sdi.pws.gui.dialog.start.Start">
-  <grid id="b37f5" binding="startPanel" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+  <grid id="b37f5" binding="startPanel" layout-manager="GridLayoutManager" row-count="5" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
     <margin top="0" left="0" bottom="0" right="0"/>
     <constraints>
-      <xy x="72" y="32" width="1012" height="794"/>
-      <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="3"/>
+      <xy x="91" y="32" width="993" height="330"/>
     </constraints>
-    <properties/>
+    <properties>
+      <preferredSize width="508" height="200"/>
+    </properties>
     <border type="none"/>
     <children>
-      <grid id="bc233" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="bc233" layout-manager="GridLayoutManager" row-count="1" column-count="4" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <xy x="0" y="221" width="1012" height="25"/>
-          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1"/>
+          <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
           <component id="2c423" class="javax.swing.JButton" binding="helpButton">
             <constraints>
-              <xy x="517" y="0" width="63" height="25"/>
-              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1"/>
+              <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text resource-bundle="guiBundle" key="general.help"/>
@@ -29,8 +28,7 @@
           </component>
           <component id="d60a8" class="javax.swing.JButton" binding="cancelButton">
             <constraints>
-              <xy x="432" y="0" width="75" height="25"/>
-              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1"/>
+              <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text resource-bundle="guiBundle" key="general.cancel"/>
@@ -38,40 +36,38 @@
           </component>
           <hspacer id="1ff7d">
             <constraints>
-              <xy x="0" y="7" width="432" height="11"/>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1"/>
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
           <hspacer id="5aa9f">
             <constraints>
-              <xy x="580" y="7" width="432" height="11"/>
-              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1"/>
+              <grid row="0" column="3" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
           </hspacer>
         </children>
       </grid>
       <vspacer id="63d3">
         <constraints>
-          <xy x="500" y="266" width="11" height="528"/>
-          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="2"/>
+          <grid row="4" column="0" row-span="1" col-span="1" vsize-policy="7" hsize-policy="1" anchor="0" fill="2" indent="0" use-parent-layout="false">
+            <minimum-size width="-1" height="10"/>
+            <preferred-size width="-1" height="10"/>
+          </grid>
         </constraints>
       </vspacer>
-      <grid id="eca1b" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+      <grid id="eca1b" layout-manager="GridLayoutManager" row-count="3" column-count="1" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
         <margin top="0" left="0" bottom="0" right="0"/>
         <constraints>
-          <xy x="0" y="0" width="1012" height="101"/>
-          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="9" fill="1">
+          <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="9" fill="1" indent="0" use-parent-layout="false">
             <minimum-size width="500" height="-1"/>
           </grid>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
-          <grid id="14825" binding="headerPanel" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
+          <grid id="14825" binding="headerPanel" layout-manager="GridLayoutManager" row-count="1" column-count="2" same-size-horizontally="false" same-size-vertically="false" hgap="0" vgap="0">
             <margin top="0" left="0" bottom="0" right="0"/>
             <constraints>
-              <xy x="0" y="0" width="1012" height="61"/>
-              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1">
+              <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="1" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="500" height="-1"/>
               </grid>
             </constraints>
@@ -80,8 +76,7 @@
             <children>
               <component id="17b96" class="javax.swing.JLabel" binding="logo">
                 <constraints>
-                  <xy x="869" y="0" width="143" height="61"/>
-                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0">
+                  <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="5" fill="0" indent="0" use-parent-layout="false">
                     <preferred-size width="143" height="61"/>
                   </grid>
                 </constraints>
@@ -94,8 +89,7 @@
               </component>
               <component id="9b714" class="javax.swing.JTextPane" binding="headerText">
                 <constraints>
-                  <xy x="0" y="0" width="560" height="6"/>
-                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="1">
+                  <grid row="0" column="0" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="9" fill="1" indent="0" use-parent-layout="false">
                     <minimum-size width="250" height="-1"/>
                     <preferred-size width="150" height="-1"/>
                   </grid>
@@ -103,25 +97,14 @@
                 <properties>
                   <contentType value="text/html"/>
                   <editable value="false"/>
-                  <text value="&lt;html&gt;
-  &lt;head&gt;
-
-  &lt;/head&gt;
-  &lt;body&gt;
-    &lt;p style=&quot;margin-top: 0&quot;&gt;
-
-    &lt;/p&gt;
-  &lt;/body&gt;
-&lt;/html&gt;
-"/>
+                  <text value="&lt;html&gt;&#10;  &lt;head&gt;&#10;    &#10;  &lt;/head&gt;&#10;  &lt;body&gt;&#10;  &lt;/body&gt;&#10;&lt;/html&gt;&#10;"/>
                 </properties>
               </component>
             </children>
           </grid>
           <component id="ae460" class="com.sdi.pws.gui.JTiledPanel" binding="line">
             <constraints>
-              <xy x="0" y="89" width="1012" height="3"/>
-              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1">
+              <grid row="2" column="0" row-span="1" col-span="1" vsize-policy="3" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false">
                 <minimum-size width="50" height="-1"/>
                 <preferred-size width="-1" height="3"/>
               </grid>
@@ -130,19 +113,17 @@
           </component>
         </children>
       </grid>
-      <grid id="ddacc" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
+      <grid id="ddacc" layout-manager="GridLayoutManager" row-count="4" column-count="3" same-size-horizontally="false" same-size-vertically="false" hgap="-1" vgap="-1">
         <margin top="10" left="5" bottom="5" right="5"/>
         <constraints>
-          <xy x="0" y="106" width="1012" height="110"/>
-          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1"/>
+          <grid row="1" column="0" row-span="1" col-span="1" vsize-policy="1" hsize-policy="3" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
         </constraints>
         <properties/>
         <border type="none"/>
         <children>
           <component id="7f0a6" class="javax.swing.JPasswordField" binding="password">
             <constraints>
-              <xy x="85" y="80" width="859" height="21"/>
-              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="1">
+              <grid row="3" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -152,8 +133,7 @@
           </component>
           <component id="5f5c2" class="javax.swing.JButton" binding="openButton">
             <constraints>
-              <xy x="954" y="80" width="53" height="25"/>
-              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1"/>
+              <grid row="3" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <enabled value="true"/>
@@ -162,8 +142,7 @@
           </component>
           <component id="c1e7e" class="javax.swing.JTextField" binding="defaultPath">
             <constraints>
-              <xy x="85" y="30" width="859" height="21"/>
-              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="1">
+              <grid row="1" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="3" anchor="9" fill="1" indent="0" use-parent-layout="false">
                 <preferred-size width="150" height="-1"/>
               </grid>
             </constraints>
@@ -174,8 +153,7 @@
           </component>
           <component id="52fa3" class="javax.swing.JButton" binding="browseButton">
             <constraints>
-              <xy x="954" y="30" width="53" height="25"/>
-              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1"/>
+              <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text resource-bundle="guiBundle" key="general.browse"/>
@@ -183,8 +161,7 @@
           </component>
           <component id="3872c" class="javax.swing.JLabel">
             <constraints>
-              <xy x="5" y="25" width="58" height="15"/>
-              <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+              <grid row="0" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text resource-bundle="guiBundle" key="start.uno"/>
@@ -192,8 +169,7 @@
           </component>
           <component id="915a6" class="javax.swing.JLabel">
             <constraints>
-              <xy x="5" y="75" width="70" height="15"/>
-              <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0"/>
+              <grid row="2" column="0" row-span="2" col-span="1" vsize-policy="0" hsize-policy="0" anchor="8" fill="0" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
               <text resource-bundle="guiBundle" key="start.duo"/>

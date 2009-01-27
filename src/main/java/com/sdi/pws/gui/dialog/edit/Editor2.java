@@ -68,7 +68,7 @@ public class Editor2
     {
         final PwsRecord lNewRecord = new PwsRecordImpl();
 
-         // Fill it with default values if needed.
+        // Fill it with default values if needed.
         try
         {
             if(aPrefs.getBoolPref(Preferences.PREF_ACTIVEDEFAULTUID) && aPrefs.hasPreference(Preferences.PREF_DEFAULT_UID))
@@ -82,7 +82,10 @@ public class Editor2
                 lNewRecord.put(lDefaultGroup);
             }
         }
-        catch(Exception eIgnore){;}
+        catch(Exception eIgnore)
+        {
+            ;
+        }
 
         if(edit(aApp, aDb, lNewRecord, aPrefs)) aDb.add(lNewRecord);
     }
@@ -92,7 +95,14 @@ public class Editor2
         final Editor2 lEditor = new Editor2();
 
         if(aPrefs.hasPreference(Preferences.PREF_VISIBLE_PWD))
-            try{lEditor.showCheck.setSelected(aPrefs.getBoolPref(Preferences.PREF_VISIBLE_PWD));}catch(PreferencesException e){;}
+            try
+            {
+                lEditor.showCheck.setSelected(aPrefs.getBoolPref(Preferences.PREF_VISIBLE_PWD));
+            }
+            catch(PreferencesException e)
+            {
+                ;
+            }
 
         lEditor.populate(aRecord, aDb);
         lEditor.generateButton.addActionListener(new ActionListener()
@@ -115,21 +125,22 @@ public class Editor2
         final JOptionPane lPane = new JOptionPane(lEditor.mainPanel, JOptionPane.PLAIN_MESSAGE, JOptionPane.OK_CANCEL_OPTION);
         final JDialog lDialog = lPane.createDialog(aApp, GuiUtil.getText("editor2.title"));
         lEditor.group.setFocusTraversalKeysEnabled(true);
-        lDialog.setFocusTraversalPolicy(new CyclicFocusPolicy(new Component[]{lEditor.group, lEditor.title,  lEditor.uid,  lEditor.pwd, lEditor.generateButton, lEditor.customButton, lEditor.showCheck, lEditor.notes}));
+        lDialog.setFocusTraversalPolicy(new CyclicFocusPolicy(new Component[]{lEditor.group, lEditor.title, lEditor.uid, lEditor.pwd, lEditor.generateButton, lEditor.customButton, lEditor.showCheck, lEditor.notes}));
         lDialog.setVisible(true);
 
         final Object lUserResponseObj = lPane.getValue();
         if(lUserResponseObj instanceof Integer)
         {
             final int lUserResponse = ((Integer) lUserResponseObj).intValue();
-            switch (lUserResponse)
+            switch(lUserResponse)
             {
                 case JOptionPane.OK_OPTION:
                     lEditor.applyChanges(aRecord);
                     return true;
                 case JOptionPane.CANCEL_OPTION:
                 case JOptionPane.CLOSED_OPTION:
-                default: return false;
+                default:
+                    return false;
             }
         }
         else return false;
@@ -162,11 +173,51 @@ public class Editor2
 
     private void populate(PwsRecord aRecord, PwsDatabase aDb)
     {
-        if(aRecord.hasType(PwsField.FIELD_GROUP)) try{origGroup = aRecord.get(PwsField.FIELD_GROUP).getAsString();}catch(Exception eIgnore){;};
-        if(aRecord.hasType(PwsField.FIELD_TITLE)) try{origTitle = aRecord.get(PwsField.FIELD_TITLE).getAsString();}catch(Exception eIgnore){;};
-        if(aRecord.hasType(PwsField.FIELD_UID)) try{origUid = aRecord.get(PwsField.FIELD_UID).getAsString();}catch(Exception eIgnore){;};
-        if(aRecord.hasType(PwsField.FIELD_PWD)) try{origPwd = aRecord.get(PwsField.FIELD_PWD).getAsString();}catch(Exception eIgnore){;};
-        if(aRecord.hasType(PwsField.FIELD_NOTES)) try{origNotes = aRecord.get(PwsField.FIELD_NOTES).getAsString();}catch(Exception eIgnore){;};
+        if(aRecord.hasType(PwsField.FIELD_GROUP)) try
+        {
+            origGroup = aRecord.get(PwsField.FIELD_GROUP).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_TITLE)) try
+        {
+            origTitle = aRecord.get(PwsField.FIELD_TITLE).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_UID)) try
+        {
+            origUid = aRecord.get(PwsField.FIELD_UID).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_PWD)) try
+        {
+            origPwd = aRecord.get(PwsField.FIELD_PWD).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_NOTES)) try
+        {
+            origNotes = aRecord.get(PwsField.FIELD_NOTES).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
 
         group.setSelectedItem(EditorUtil.expandNull(origGroup));
         title.setText(EditorUtil.expandNull(origTitle));
@@ -186,16 +237,19 @@ public class Editor2
                 {
                     lGroupNames.add(lRec.get(PwsField.FIELD_GROUP).getAsString());
                 }
-                catch(ModelException eIgnore){;}
+                catch(ModelException eIgnore)
+                {
+                    ;
+                }
             }
         }
-        final Iterator lNamesIter =lGroupNames.iterator();
+        final Iterator lNamesIter = lGroupNames.iterator();
         while(lNamesIter.hasNext()) group.addItem(lNamesIter.next());
     }
 
     private void applyChanges(PwsRecord aRecord)
     {
-        final String lNewGroup = EditorUtil.trimAndReduceToNull((String)group.getSelectedItem());
+        final String lNewGroup = EditorUtil.trimAndReduceToNull((String) group.getSelectedItem());
         final String lNewTitle = EditorUtil.trimAndReduceToNull(title.getText());
         final String lNewUid = EditorUtil.trimAndReduceToNull(uid.getText());
         final String lNewPwd = EditorUtil.trimAndReduceToNull(new String(pwd.getPassword()));
@@ -219,6 +273,8 @@ public class Editor2
      * Method generated by IntelliJ IDEA GUI Designer
      * >>> IMPORTANT!! <<<
      * DO NOT edit this method OR call it in your code!
+     *
+     * @noinspection ALL
      */
     private void $$$setupUI$$$()
     {
@@ -227,60 +283,132 @@ public class Editor2
         final JLabel label1 = new JLabel();
         label1.setHorizontalAlignment(4);
         label1.setHorizontalTextPosition(4);
-        SupportCode.setTextFromBundle(label1, "guiBundle", "editor2.uid");
-        mainPanel.add(label1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null));
+        this.$$$loadLabelText$$$(label1, ResourceBundle.getBundle("guiBundle").getString("editor2.uid"));
+        mainPanel.add(label1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null, 0, false));
         uid = new JTextField();
         uid.setText("");
-        mainPanel.add(uid, new GridConstraints(2, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null));
+        mainPanel.add(uid, new GridConstraints(2, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JLabel label2 = new JLabel();
         label2.setHorizontalAlignment(4);
         label2.setHorizontalTextPosition(4);
-        SupportCode.setTextFromBundle(label2, "guiBundle", "editor2.pwd");
-        mainPanel.add(label2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null));
+        this.$$$loadLabelText$$$(label2, ResourceBundle.getBundle("guiBundle").getString("editor2.pwd"));
+        mainPanel.add(label2, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null, 0, false));
         pwd = new JPasswordField();
-        mainPanel.add(pwd, new GridConstraints(3, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null));
+        mainPanel.add(pwd, new GridConstraints(3, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         final JScrollPane scrollPane1 = new JScrollPane();
-        mainPanel.add(scrollPane1, new GridConstraints(5, 1, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(80, 80), null));
+        mainPanel.add(scrollPane1, new GridConstraints(5, 1, 1, 3, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, null, new Dimension(80, 80), null, 0, false));
         notes = new JTextPane();
         scrollPane1.setViewportView(notes);
         final JLabel label3 = new JLabel();
         label3.setHorizontalAlignment(4);
         label3.setHorizontalTextPosition(4);
-        SupportCode.setTextFromBundle(label3, "guiBundle", "editor2.notes");
-        mainPanel.add(label3, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null));
+        this.$$$loadLabelText$$$(label3, ResourceBundle.getBundle("guiBundle").getString("editor2.notes"));
+        mainPanel.add(label3, new GridConstraints(5, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null, 0, false));
         final Spacer spacer1 = new Spacer();
-        mainPanel.add(spacer1, new GridConstraints(4, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null));
+        mainPanel.add(spacer1, new GridConstraints(4, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final Spacer spacer2 = new Spacer();
-        mainPanel.add(spacer2, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null));
+        mainPanel.add(spacer2, new GridConstraints(4, 0, 1, 2, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JLabel label4 = new JLabel();
         label4.setHorizontalAlignment(4);
         label4.setHorizontalTextPosition(4);
-        SupportCode.setTextFromBundle(label4, "guiBundle", "editor2.titfld");
-        mainPanel.add(label4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null));
+        this.$$$loadLabelText$$$(label4, ResourceBundle.getBundle("guiBundle").getString("editor2.titfld"));
+        mainPanel.add(label4, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null, 0, false));
         title = new JTextField();
         title.setEditable(true);
         title.setMargin(new Insets(1, 1, 1, 1));
         title.setText("");
-        mainPanel.add(title, new GridConstraints(1, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, -1), null));
+        mainPanel.add(title, new GridConstraints(1, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(250, -1), null, 0, false));
         final JLabel label5 = new JLabel();
         label5.setHorizontalAlignment(4);
         label5.setHorizontalTextPosition(4);
-        SupportCode.setTextFromBundle(label5, "guiBundle", "editor2.group");
-        mainPanel.add(label5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null));
+        this.$$$loadLabelText$$$(label5, ResourceBundle.getBundle("guiBundle").getString("editor2.group"));
+        mainPanel.add(label5, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(40, -1), null, null, 0, false));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 3, new Insets(0, 0, 0, 0), -1, -1));
-        mainPanel.add(panel1, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null));
+        mainPanel.add(panel1, new GridConstraints(4, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         showCheck = new JCheckBox();
-        SupportCode.setTextFromBundle(showCheck, "guiBundle", "editor2.show");
-        panel1.add(showCheck, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+        this.$$$loadButtonText$$$(showCheck, ResourceBundle.getBundle("guiBundle").getString("editor2.show"));
+        panel1.add(showCheck, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         customButton = new JButton();
-        SupportCode.setTextFromBundle(customButton, "guiBundle", "editor2.generate2");
-        panel1.add(customButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+        this.$$$loadButtonText$$$(customButton, ResourceBundle.getBundle("guiBundle").getString("editor2.generate2"));
+        panel1.add(customButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         generateButton = new JButton();
-        SupportCode.setTextFromBundle(generateButton, "guiBundle", "editor2.generate1");
-        panel1.add(generateButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null));
+        this.$$$loadButtonText$$$(generateButton, ResourceBundle.getBundle("guiBundle").getString("editor2.generate1"));
+        panel1.add(generateButton, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         group = new JComboBox();
         group.setEditable(true);
-        mainPanel.add(group, new GridConstraints(0, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null));
+        mainPanel.add(group, new GridConstraints(0, 1, 1, 3, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private void $$$loadLabelText$$$(JLabel component, String text)
+    {
+        StringBuffer result = new StringBuffer();
+        boolean haveMnemonic = false;
+        char mnemonic = '\0';
+        int mnemonicIndex = -1;
+        for(int i = 0; i < text.length(); i++)
+        {
+            if(text.charAt(i) == '&')
+            {
+                i++;
+                if(i == text.length()) break;
+                if(!haveMnemonic && text.charAt(i) != '&')
+                {
+                    haveMnemonic = true;
+                    mnemonic = text.charAt(i);
+                    mnemonicIndex = result.length();
+                }
+            }
+            result.append(text.charAt(i));
+        }
+        component.setText(result.toString());
+        if(haveMnemonic)
+        {
+            component.setDisplayedMnemonic(mnemonic);
+            component.setDisplayedMnemonicIndex(mnemonicIndex);
+        }
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    private void $$$loadButtonText$$$(AbstractButton component, String text)
+    {
+        StringBuffer result = new StringBuffer();
+        boolean haveMnemonic = false;
+        char mnemonic = '\0';
+        int mnemonicIndex = -1;
+        for(int i = 0; i < text.length(); i++)
+        {
+            if(text.charAt(i) == '&')
+            {
+                i++;
+                if(i == text.length()) break;
+                if(!haveMnemonic && text.charAt(i) != '&')
+                {
+                    haveMnemonic = true;
+                    mnemonic = text.charAt(i);
+                    mnemonicIndex = result.length();
+                }
+            }
+            result.append(text.charAt(i));
+        }
+        component.setText(result.toString());
+        if(haveMnemonic)
+        {
+            component.setMnemonic(mnemonic);
+            component.setDisplayedMnemonicIndex(mnemonicIndex);
+        }
+    }
+
+    /**
+     * @noinspection ALL
+     */
+    public JComponent $$$getRootComponent$$$()
+    {
+        return mainPanel;
     }
 }
