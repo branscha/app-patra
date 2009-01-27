@@ -1,6 +1,6 @@
 /*
 Password Tracker (PATRA). An application to safely store your passwords.
-Copyright (C) 2006  Bruno Ranschaert, S.D.I.-Consulting BVBA.
+Copyright (C) 2006-2009  Bruno Ranschaert, S.D.I.-Consulting BVBA.
 
 For more information contact: nospam@sdi-consulting.com
 Visit our website: http://www.sdi-consulting.com
@@ -28,6 +28,11 @@ import com.intellij.uiDesigner.core.GridConstraints;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.MouseAdapter;
+import java.awt.event.MouseEvent;
+import java.net.URI;
+import java.net.URISyntaxException;
+import java.io.IOException;
 
 public class About
 {
@@ -37,13 +42,32 @@ public class About
     public About()
     {
         aboutImage.setIcon(new ImageIcon(About.class.getClassLoader().getResource("assets/pwt-about.jpg")));
+        aboutImage.addMouseListener(new MouseAdapter()
+        {
+            @Override
+            public void mouseClicked(MouseEvent aMouseEvent)
+            {
+                Desktop lDesktop = Desktop.getDesktop();
+                if(lDesktop.isSupported(Desktop.Action.BROWSE))
+                {
+                    try
+                    {
+                        lDesktop.browse(new URI("http://www.sdi-consulting.com"));
+                    }
+                    catch(Exception e)
+                    {
+                    }
+
+                }
+            }
+        });
     }
 
     public static void about(JComponent aApp)
     {
         final About lAbout = new About();
-        final JOptionPane lPane = new JOptionPane(lAbout.mainPanel,
-                                                  JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
+        lAbout.aboutImage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
+        final JOptionPane lPane = new JOptionPane(lAbout.mainPanel, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
         final JDialog lDialog = lPane.createDialog(aApp, GuiUtil.getText("about.title"));
         lDialog.setVisible(true);
     }
@@ -69,8 +93,8 @@ public class About
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
         mainPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
-        panel1.setBorder(BorderFactory.createTitledBorder(BorderFactory.createEtchedBorder(), null));
         aboutImage = new JLabel();
+        aboutImage.setIcon(new ImageIcon(getClass().getResource("/assets/pwt-about.jpg")));
         aboutImage.setIconTextGap(0);
         aboutImage.setText("");
         panel1.add(aboutImage, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));

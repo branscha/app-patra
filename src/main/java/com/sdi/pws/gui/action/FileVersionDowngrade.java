@@ -1,6 +1,6 @@
 /*
 Password Tracker (PATRA). An application to safely store your passwords.
-Copyright (C) 2006  Bruno Ranschaert, S.D.I.-Consulting BVBA.
+Copyright (C) 2006-2009  Bruno Ranschaert, S.D.I.-Consulting BVBA.
 
 For more information contact: nospam@sdi-consulting.com
 Visit our website: http://www.sdi-consulting.com

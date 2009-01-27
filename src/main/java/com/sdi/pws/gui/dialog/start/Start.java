@@ -1,6 +1,6 @@
 /*
 Password Tracker (PATRA). An application to safely store your passwords.
-Copyright (C) 2006  Bruno Ranschaert, S.D.I.-Consulting BVBA.
+Copyright (C) 2006-2009  Bruno Ranschaert, S.D.I.-Consulting BVBA.
 
 For more information contact: nospam@sdi-consulting.com
 Visit our website: http://www.sdi-consulting.com
@@ -22,23 +22,21 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 package com.sdi.pws.gui.dialog.start;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
+import com.sdi.pws.gui.CyclicFocusPolicy;
 import com.sdi.pws.gui.DatabaseHolder;
 import com.sdi.pws.gui.GuiUtil;
-import com.sdi.pws.gui.CyclicFocusPolicy;
-import com.sdi.pws.gui.JTiledPanel;
 import com.sdi.pws.gui.action.FileOpenOrNew;
 import com.sdi.pws.preferences.Preferences;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.SupportCode;
-import com.intellij.uiDesigner.core.Spacer;
 
+import javax.help.CSH;
+import javax.help.HelpBroker;
 import javax.swing.*;
 import javax.swing.text.JTextComponent;
-import javax.help.HelpBroker;
-import javax.help.CSH;
-import java.awt.event.*;
 import java.awt.*;
+import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
 import java.io.File;
@@ -55,7 +53,6 @@ public class Start
     private JButton helpButton;
     private JLabel logo;
     private JPanel headerPanel;
-    private JTiledPanel line;
     private JTextPane headerText;
 
     // This class is a small modification on the FileOpenOrNew action. In this
@@ -86,20 +83,23 @@ public class Start
         // Create a frame to show our panel.
         final JDialog lStartDialog = new JDialog(aApp);
         lStartDialog.setModal(true);
+        // Set minimum dimensions so that the dialog does not shrink below workable size.
+        final int lMaxHeight = 200;
+        lStartDialog.setMinimumSize(new Dimension(500, lMaxHeight));
+        lStartDialog.setPreferredSize(new Dimension(600, lMaxHeight));
+        lStartDialog.setMaximumSize(new Dimension(Integer.MAX_VALUE, lMaxHeight));
         lStartDialog.setDefaultCloseOperation(JDialog.DO_NOTHING_ON_CLOSE);
         lStartDialog.setTitle(GuiUtil.getText("start.title"));
 
         // Create the panel and add it to the frame.
         final Start lStart = new Start();
-        lStartDialog.setContentPane(lStart.startPanel);
+        lStartDialog.setLayout(new BorderLayout());
+        lStartDialog.add(lStart.startPanel, BorderLayout.CENTER);
 
         // Load the logo
         lStart.logo.setIcon(new ImageIcon(Start.class.getClassLoader().getResource("assets/pwt-logo-small.gif")));
         lStart.headerPanel.setBackground(Color.white);
         lStart.headerText.setText(GuiUtil.getText("start.bannertext"));
-
-        // Load the line
-        lStart.line.setTile(new ImageIcon(Start.class.getClassLoader().getResource("assets/line.gif")).getImage());
 
         // Initialize the panel data.
         if(lFile == null)
@@ -208,6 +208,9 @@ public class Start
     {
         startPanel = new JPanel();
         startPanel.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
+        startPanel.setMinimumSize(new Dimension(-1, -1));
+        startPanel.setPreferredSize(new Dimension(-1, -1));
+        startPanel.setRequestFocusEnabled(false);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         startPanel.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
@@ -222,49 +225,44 @@ public class Start
         final Spacer spacer2 = new Spacer();
         panel1.add(spacer2, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
         final Spacer spacer3 = new Spacer();
-        startPanel.add(spacer3, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 10), new Dimension(-1, 10), null, 0, false));
+        startPanel.add(spacer3, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_WANT_GROW, new Dimension(-1, 3), new Dimension(-1, 3), null, 0, false));
         final JPanel panel2 = new JPanel();
-        panel2.setLayout(new GridLayoutManager(3, 1, new Insets(0, 0, 0, 0), 0, 0));
-        startPanel.add(panel2, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, new Dimension(500, -1), null, null, 0, false));
+        panel2.setLayout(new GridLayoutManager(4, 3, new Insets(10, 5, 5, 5), -1, -1));
+        startPanel.add(panel2, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
+        password = new JPasswordField();
+        password.setEnabled(true);
+        panel2.add(password, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        openButton = new JButton();
+        openButton.setEnabled(true);
+        this.$$$loadButtonText$$$(openButton, ResourceBundle.getBundle("guiBundle").getString("start.gobutton"));
+        panel2.add(openButton, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        defaultPath = new JTextField();
+        defaultPath.setEditable(true);
+        defaultPath.setText("");
+        panel2.add(defaultPath, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
+        browseButton = new JButton();
+        this.$$$loadButtonText$$$(browseButton, ResourceBundle.getBundle("guiBundle").getString("general.browse"));
+        panel2.add(browseButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label1 = new JLabel();
+        this.$$$loadLabelText$$$(label1, ResourceBundle.getBundle("guiBundle").getString("start.uno"));
+        panel2.add(label1, new GridConstraints(0, 0, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        final JLabel label2 = new JLabel();
+        this.$$$loadLabelText$$$(label2, ResourceBundle.getBundle("guiBundle").getString("start.duo"));
+        panel2.add(label2, new GridConstraints(2, 0, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         headerPanel = new JPanel();
         headerPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), 0, 0));
-        panel2.add(headerPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTH, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(500, -1), null, 0, false));
+        startPanel.add(headerPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         logo = new JLabel();
         logo.setIconTextGap(0);
         logo.setText("");
         logo.setVerticalAlignment(1);
         logo.setVerticalTextPosition(1);
-        headerPanel.add(logo, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_NORTHEAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(143, 61), null, 0, false));
+        headerPanel.add(logo, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_EAST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_CAN_GROW, null, new Dimension(143, 61), null, 0, false));
         headerText = new JTextPane();
         headerText.setContentType("text/html");
         headerText.setEditable(false);
-        headerText.setText("<html>\n  <head>\n    \n  </head>\n  <body>\n  </body>\n</html>\n");
-        headerPanel.add(headerText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, -1), new Dimension(150, -1), null, 0, false));
-        line = new JTiledPanel();
-        panel2.add(line, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, new Dimension(50, -1), new Dimension(-1, 3), null, 0, false));
-        final JPanel panel3 = new JPanel();
-        panel3.setLayout(new GridLayoutManager(4, 3, new Insets(10, 5, 5, 5), -1, -1));
-        startPanel.add(panel3, new GridConstraints(1, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, 1, null, null, null, 0, false));
-        password = new JPasswordField();
-        password.setEnabled(true);
-        panel3.add(password, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        openButton = new JButton();
-        openButton.setEnabled(true);
-        this.$$$loadButtonText$$$(openButton, ResourceBundle.getBundle("guiBundle").getString("start.gobutton"));
-        panel3.add(openButton, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        defaultPath = new JTextField();
-        defaultPath.setEditable(true);
-        defaultPath.setText("");
-        panel3.add(defaultPath, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
-        browseButton = new JButton();
-        this.$$$loadButtonText$$$(browseButton, ResourceBundle.getBundle("guiBundle").getString("general.browse"));
-        panel3.add(browseButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label1 = new JLabel();
-        this.$$$loadLabelText$$$(label1, ResourceBundle.getBundle("guiBundle").getString("start.uno"));
-        panel3.add(label1, new GridConstraints(0, 0, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
-        final JLabel label2 = new JLabel();
-        this.$$$loadLabelText$$$(label2, ResourceBundle.getBundle("guiBundle").getString("start.duo"));
-        panel3.add(label2, new GridConstraints(2, 0, 2, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        headerText.setText("<html>\n  <head>\n\n  </head>\n  <body>\n    <p style=\"margin-top: 0\">\n      \n    </p>\n  </body>\n</html>\n");
+        headerPanel.add(headerText, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, new Dimension(250, -1), new Dimension(250, -1), null, 0, false));
     }
 
     /**
