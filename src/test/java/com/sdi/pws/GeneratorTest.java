@@ -40,7 +40,7 @@ public class GeneratorTest
         JGeneratorProps lProps = new JGeneratorProps(lGen);
         lDialog.setContentPane(lProps);
         lDialog.pack();
-        lDialog.show();
+        lDialog.setVisible(true);
 
         for(int i = 0; i < 5; i++)
             System.out.println(lGen.generate());

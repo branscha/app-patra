@@ -35,7 +35,7 @@
             <groupId>javax.help</groupId>
             <artifactId>javahelp</artifactId>
             <version>2.0.02</version>
-            <scope>compile</scope>
+            <scope>compile</scope>                                                      
         </dependency>
 
         <dependency>
@@ -60,29 +60,18 @@
             </plugin>
 
             <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-assembly-plugin</artifactId>
-                <version>2.2-beta-2</version>
-                <executions>
-                    <execution>
-                        <id>create-executable-jar</id>
-                        <phase>package</phase>
-                        <goals>
-                            <goal>single</goal>
-                        </goals>
-                        <configuration>
-                            <descriptorRefs>
-                                <descriptorRef>
-                                    jar-with-dependencies
-                                </descriptorRef>
-                            </descriptorRefs>
-                            <archive>
-                                <manifest>
-                                    <mainClass>com.sdi.pws.gui.Pws</mainClass>
-                                </manifest>
-                            </archive>
-                        </configuration>
-                    </execution>
-                </executions>
+                <configuration>
+                    <descriptorRefs>
+                        <descriptorRef>jar-with-dependencies</descriptorRef>
+                    </descriptorRefs>
+                    <archive>
+                        <manifest>
+                            <mainClass>com.sdi.pws.gui.Pws</mainClass>
+                        </manifest>
+                    </archive>
+                </configuration>
             </plugin>
 
         </plugins>
@@ -99,6 +88,8 @@
                 <includes>
                     <include>assets/**/*.gif</include>
                     <include>assets/**/*.jpg</include>
+                    <include>assets/**/*.png</include>
+                    <include>assets/**/*.ico</include>
                 </includes>
             </resource>
             <resource>

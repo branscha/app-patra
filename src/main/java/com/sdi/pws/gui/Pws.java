@@ -68,6 +68,7 @@ public class Pws
         {
             // Do nothing here.
             // We cannot react in a rational way here.
+            e.printStackTrace();
         }
     }
 

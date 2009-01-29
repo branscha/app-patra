@@ -136,7 +136,7 @@ public class ChangePassword
         ChangePassword dialog = new ChangePassword(aApp, aDb);
         dialog.pack();
         GuiUtil.centerComponent(dialog, aApp);
-        dialog.show();
+        dialog.setVisible(true);
     }
 
     {
