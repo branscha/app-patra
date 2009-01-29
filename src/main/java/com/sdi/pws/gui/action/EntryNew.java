@@ -49,7 +49,7 @@ extends AbstractAction
         prefs = aGlobalPrefs;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(EntryNew.class.getClassLoader().getResource("assets/add.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(EntryNew.class.getClassLoader().getResource("assets/add.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 

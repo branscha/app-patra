@@ -50,7 +50,7 @@ extends AbstractAction
         application = aAppFrame;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/new.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/new.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 
@@ -61,7 +61,7 @@ extends AbstractAction
         passphrase = aPassphrase;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/new.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/new.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 

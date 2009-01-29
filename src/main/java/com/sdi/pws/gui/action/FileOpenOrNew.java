@@ -49,6 +49,10 @@ extends AbstractAction
         path = aPath;
         application = aApplication;
         prefs = aPrefs;
+
+        // Install the icon.
+        final ImageIcon lUIDIcon = new ImageIcon(FileOpen.class.getClassLoader().getResource("assets/go.png"));
+        putValue(SMALL_ICON,lUIDIcon);
     }
 
     public void actionPerformed(ActionEvent e)

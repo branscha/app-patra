@@ -99,19 +99,19 @@ public class Pws
 
         final JMenu lConvertMenu = new JMenu(GuiUtil.getText("menu.convert"));
         lConvertMenu.setMnemonic('C');
-        final ImageIcon lConvertIcon = new ImageIcon(Pws.class.getClassLoader().getResource("assets/convert.gif"));
+        final ImageIcon lConvertIcon = new ImageIcon(Pws.class.getClassLoader().getResource("assets/convert.png"));
         lConvertMenu.setIcon(lConvertIcon);
 
         final JMenu lImportMenu = new JMenu(GuiUtil.getText("menu.import"));
         lImportMenu.setMnemonic('I');
         // Install the icon.
-        final ImageIcon lImportIcon = new ImageIcon(Pws.class.getClassLoader().getResource("assets/import.gif"));
+        final ImageIcon lImportIcon = new ImageIcon(Pws.class.getClassLoader().getResource("assets/import.png"));
         lImportMenu.setIcon(lImportIcon);
 
         final JMenu lExportMenu = new JMenu(GuiUtil.getText("menu.export"));
         lExportMenu.setMnemonic('E');
         // Install the icon.
-        final ImageIcon lExportIcon = new ImageIcon(Pws.class.getClassLoader().getResource("assets/export.gif"));
+        final ImageIcon lExportIcon = new ImageIcon(Pws.class.getClassLoader().getResource("assets/export.png"));
         lExportMenu.setIcon(lExportIcon);
 
         // Password menu.
@@ -129,7 +129,7 @@ public class Pws
         lHelpMenu.setMnemonic('H');
         lAppMenu.add(lHelpMenu);
         // Listen for help.
-        final JMenuItem lHelpItem = new JMenuItem(GuiUtil.getText("menuitem.help"), new ImageIcon(Pws.class.getClassLoader().getResource("assets/help.gif")));
+        final JMenuItem lHelpItem = new JMenuItem(GuiUtil.getText("menuitem.help"), new ImageIcon(Pws.class.getClassLoader().getResource("assets/help.png")));
         final HelpBroker lBroker = GuiUtil.getHelpBroker();
         lBroker.setCurrentID("intro_html");
         lHelpItem.addActionListener(new CSH.DisplayHelpFromSource(lBroker));

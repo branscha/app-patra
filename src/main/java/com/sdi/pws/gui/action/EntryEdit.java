@@ -57,7 +57,7 @@ extends AbstractAction
 
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(EntryEdit.class.getClassLoader().getResource("assets/edit.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(EntryEdit.class.getClassLoader().getResource("assets/edit.png"));
         putValue(SMALL_ICON,lUIDIcon);
 
         // Decide if the action is enabled or not right now.

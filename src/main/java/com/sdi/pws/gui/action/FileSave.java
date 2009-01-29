@@ -50,7 +50,7 @@ extends AbstractAction
         prefs = aPrefs;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(FileSave.class.getClassLoader().getResource("assets/save.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(FileSave.class.getClassLoader().getResource("assets/save.png"));
         putValue(SMALL_ICON,lUIDIcon);
 
         // Decide if the action is enabled or not right now.

@@ -48,7 +48,7 @@ extends AbstractAction
         monitor = aMonitor;
 
         // Install the icon.
-        final ImageIcon lPWDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/pwd.gif"));
+        final ImageIcon lPWDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/pwd.png"));
         putValue(SMALL_ICON,lPWDIcon);
 
         // Decide if the action is enabled or not right now.

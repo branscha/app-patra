@@ -46,7 +46,7 @@ extends AbstractAction
         this.initializeAction(aAppFrame, aHolder, aPrefs);
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/noicon.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/change.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 

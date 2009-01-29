@@ -109,7 +109,7 @@ public class Prefs
                 }
             }
         });
-        browseButton.setIcon(new ImageIcon(Prefs.class.getClassLoader().getResource("assets/find.gif")));
+        browseButton.setIcon(new ImageIcon(Prefs.class.getClassLoader().getResource("assets/find.png")));
 
         // Install Help.
         // Listen for help from the F1 key.

@@ -130,7 +130,6 @@ public class Start
                 }
             }
         });
-        lStart.browseButton.setIcon(new ImageIcon(Start.class.getClassLoader().getResource("assets/find.gif")));
 
         // Install Help.
         //////////////////////////////////////////////////////////////////////
@@ -138,7 +137,6 @@ public class Start
         final HelpBroker lBroker = GuiUtil.getHelpBroker();
         lBroker.setCurrentID("startscreen_html");
         lStart.helpButton.addActionListener(new CSH.DisplayHelpFromSource(lBroker));
-        lStart.helpButton.setIcon(new ImageIcon(Start.class.getClassLoader().getResource("assets/help.gif")));
         // Listen for help from the F1 key.
         lBroker.enableHelpKey(lStart.startPanel, "startscreen_html", null);
         //////////////////////////////////////////////////////////////////////
@@ -215,9 +213,13 @@ public class Start
         panel1.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
         startPanel.add(panel1, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         helpButton = new JButton();
+        helpButton.setHorizontalAlignment(2);
+        helpButton.setIcon(new ImageIcon(getClass().getResource("/assets/help.png")));
         this.$$$loadButtonText$$$(helpButton, ResourceBundle.getBundle("guiBundle").getString("general.help"));
         panel1.add(helpButton, new GridConstraints(0, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         cancelButton = new JButton();
+        cancelButton.setHorizontalAlignment(2);
+        cancelButton.setIcon(new ImageIcon(getClass().getResource("/assets/cancel.png")));
         this.$$$loadButtonText$$$(cancelButton, ResourceBundle.getBundle("guiBundle").getString("general.cancel"));
         panel1.add(cancelButton, new GridConstraints(0, 1, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer1 = new Spacer();
@@ -234,6 +236,8 @@ public class Start
         panel2.add(password, new GridConstraints(3, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         openButton = new JButton();
         openButton.setEnabled(true);
+        openButton.setHorizontalAlignment(2);
+        openButton.setIcon(new ImageIcon(getClass().getResource("/assets/go.png")));
         this.$$$loadButtonText$$$(openButton, ResourceBundle.getBundle("guiBundle").getString("start.gobutton"));
         panel2.add(openButton, new GridConstraints(3, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         defaultPath = new JTextField();
@@ -241,6 +245,8 @@ public class Start
         defaultPath.setText("");
         panel2.add(defaultPath, new GridConstraints(1, 1, 1, 1, GridConstraints.ANCHOR_NORTHWEST, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, new Dimension(150, -1), null, 0, false));
         browseButton = new JButton();
+        browseButton.setHorizontalAlignment(2);
+        browseButton.setIcon(new ImageIcon(getClass().getResource("/assets/find.png")));
         this.$$$loadButtonText$$$(browseButton, ResourceBundle.getBundle("guiBundle").getString("general.browse"));
         panel2.add(browseButton, new GridConstraints(1, 2, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_FIXED, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final JLabel label1 = new JLabel();

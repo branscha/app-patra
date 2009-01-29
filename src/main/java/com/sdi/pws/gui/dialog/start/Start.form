@@ -25,6 +25,8 @@
               <grid row="0" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <horizontalAlignment value="2"/>
+              <icon value="assets/help.png"/>
               <text resource-bundle="guiBundle" key="general.help"/>
             </properties>
           </component>
@@ -33,6 +35,8 @@
               <grid row="0" column="1" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <horizontalAlignment value="2"/>
+              <icon value="assets/cancel.png"/>
               <text resource-bundle="guiBundle" key="general.cancel"/>
             </properties>
           </component>
@@ -80,6 +84,8 @@
             </constraints>
             <properties>
               <enabled value="true"/>
+              <horizontalAlignment value="2"/>
+              <icon value="assets/go.png"/>
               <text resource-bundle="guiBundle" key="start.gobutton"/>
             </properties>
           </component>
@@ -99,6 +105,8 @@
               <grid row="1" column="2" row-span="1" col-span="1" vsize-policy="0" hsize-policy="0" anchor="0" fill="1" indent="0" use-parent-layout="false"/>
             </constraints>
             <properties>
+              <horizontalAlignment value="2"/>
+              <icon value="assets/find.png"/>
               <text resource-bundle="guiBundle" key="general.browse"/>
             </properties>
           </component>

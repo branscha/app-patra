@@ -48,7 +48,7 @@ extends AbstractAction
         selector = aSelector;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(EntryDelete.class.getClassLoader().getResource("assets/delete.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(EntryDelete.class.getClassLoader().getResource("assets/delete.png"));
         putValue(SMALL_ICON,lUIDIcon);
 
         // Decide if the action is enabled or not right now.

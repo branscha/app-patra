@@ -43,7 +43,7 @@ extends AbstractAction
         monitor = aMonitor;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(ClearClipboard.class.getClassLoader().getResource("assets/clearclip.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(ClearClipboard.class.getClassLoader().getResource("assets/clearclip.png"));
         putValue(SMALL_ICON,lUIDIcon);
 
         // Decide if the action is enabled or not right now.

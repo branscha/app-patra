@@ -48,7 +48,7 @@ extends AbstractAction
         monitor = aMonitor;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/uid.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/uid.png"));
         putValue(SMALL_ICON,lUIDIcon);
 
         // Decide if the action is enabled or not right now.

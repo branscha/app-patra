@@ -39,7 +39,7 @@ extends AbstractAction
         application = aAppFrame;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(AppAbout.class.getClassLoader().getResource("assets/about.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(AppAbout.class.getClassLoader().getResource("assets/about.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 

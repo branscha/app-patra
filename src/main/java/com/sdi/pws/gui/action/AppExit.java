@@ -46,7 +46,7 @@ extends AbstractAction
         prefs = aPrefs;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(AppExit.class.getClassLoader().getResource("assets/noicon.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(AppExit.class.getClassLoader().getResource("assets/exit.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 

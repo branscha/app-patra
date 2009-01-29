@@ -53,7 +53,7 @@ extends AbstractAction
         prefs = aPrefs;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(FileOpen.class.getClassLoader().getResource("assets/open.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(FileOpen.class.getClassLoader().getResource("assets/open.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 
@@ -65,7 +65,7 @@ extends AbstractAction
         prefs = aPrefs;
 
         // Install the icon.
-        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/open.gif"));
+        final ImageIcon lUIDIcon = new ImageIcon(CopyUid.class.getClassLoader().getResource("assets/open.png"));
         putValue(SMALL_ICON,lUIDIcon);
     }
 
