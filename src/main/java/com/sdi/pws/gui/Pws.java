@@ -369,11 +369,24 @@ public class Pws
         lPasswordMenu.add(lDeleteEntryAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
         lPopupMenu.add(lDeleteEntryAction);
 
+        final int lTextGap = 3;
+
         final Action lTableViewAction = new ViewTable(lViews, lRecordSelector, lTableSelector, lViewName);
-        lViewMenu.add(lTableViewAction);
+        JRadioButton lTableButton = new JRadioButton(lTableViewAction);
+        lTableButton.setIconTextGap(lTextGap);
+        lTableButton.setSelected(!lTableViewAction.isEnabled());
+        lViewMenu.add(lTableButton);
 
         final Action lTreeViewAction = new ViewTree(lViews, lRecordSelector, lTreeSelector, lViewName);
-        lViewMenu.add(lTreeViewAction);
+        JRadioButton lTreeButton = new JRadioButton(lTreeViewAction);
+        lTreeButton.setIconTextGap(lTextGap);
+        lTreeButton.setSelected(!lTreeViewAction.isEnabled());
+        lViewMenu.add(lTreeButton);
+
+        // TODO work this out
+        JCheckBox lStayPut =  new JCheckBox(" Stay on top", false);
+        lStayPut.setIconTextGap(lTextGap);
+        lViewMenu.add(lStayPut);
 
         final Action lFileUpgradeAction = new FileVersionUpgrade(lAppFrame.getRootPane(),lDbHolder, lGlobalPreferences);
         lConvertMenu.add(lFileUpgradeAction);
