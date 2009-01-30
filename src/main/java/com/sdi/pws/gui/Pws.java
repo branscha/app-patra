@@ -23,7 +23,6 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 package com.sdi.pws.gui;
 
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
-import com.jgoodies.looks.plastic.theme.SkyGreen;
 import com.jgoodies.looks.plastic.theme.DesertRed;
 import com.sdi.pws.codec.Codec2;
 import com.sdi.pws.db.PwsDatabaseImpl;
@@ -43,6 +42,7 @@ import com.sdi.pws.preferences.PreferencesImpl;
 import javax.help.CSH;
 import javax.help.HelpBroker;
 import javax.swing.*;
+import javax.swing.border.EmptyBorder;
 import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
@@ -141,12 +141,15 @@ public class Pws
         // Popup menu.
         final JPopupMenu lPopupMenu = new JPopupMenu();
 
+        // Vertical button panel size.
+        final int lButtonPanelWidth = 25;
+
         // Left button panel.
         final JPanel lLeftButtonPanel = new JPanel();
         lLeftButtonPanel.setLayout(new GridLayout(2, 1));
-        lLeftButtonPanel.setMaximumSize(new Dimension(30, 0));
-        lLeftButtonPanel.setMinimumSize(new Dimension(30, 0));
-        lLeftButtonPanel.setPreferredSize(new Dimension(30, 0));
+        lLeftButtonPanel.setMaximumSize(new Dimension(lButtonPanelWidth, 0));
+        lLeftButtonPanel.setMinimumSize(new Dimension(lButtonPanelWidth, 0));
+        lLeftButtonPanel.setPreferredSize(new Dimension(lButtonPanelWidth, 0));
         lAppFrame.getRootPane().getContentPane().add(lLeftButtonPanel, BorderLayout.WEST);
         // Button panel buttons.
         JButton lLeftCopyUID = new JButton();
@@ -167,9 +170,9 @@ public class Pws
         // Right button panel.
         final JPanel lRightButtonPanel = new JPanel();
         lRightButtonPanel.setLayout(new GridLayout(2, 1));
-        lRightButtonPanel.setMaximumSize(new Dimension(30, 0));
-        lRightButtonPanel.setMinimumSize(new Dimension(30, 0));
-        lRightButtonPanel.setPreferredSize(new Dimension(30, 0));
+        lRightButtonPanel.setMaximumSize(new Dimension(lButtonPanelWidth, 0));
+        lRightButtonPanel.setMinimumSize(new Dimension(lButtonPanelWidth, 0));
+        lRightButtonPanel.setPreferredSize(new Dimension(lButtonPanelWidth, 0));
         lAppFrame.getRootPane().getContentPane().add(lRightButtonPanel, BorderLayout.EAST);
         // Button panel buttons.
         JButton lRightCopyUID = new JButton();
@@ -198,10 +201,20 @@ public class Pws
         lTableView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         final JScrollPane lTableViewScroll = new JScrollPane(lTableView);
         final Box lTableBox = Box.createVerticalBox();
+        // Create the filter panel.
+        final JPanel lFilterPanel = new JPanel();
+        lFilterPanel.setLayout(new BorderLayout());
+        final JLabel lFilterLabel = new JLabel(new ImageIcon(Start.class.getClassLoader().getResource("assets/loep.png"))) ;
+        lFilterLabel.setBorder(new EmptyBorder(1, 1, 1, 5));
+        lFilterPanel.setBackground(Color.white);
+        lFilterPanel.add(lFilterLabel, BorderLayout.WEST);
         final JTextField lTableFilter = new JTextField();
+        lFilterPanel.add(lTableFilter, BorderLayout.CENTER);
+        lFilterPanel.setBorder(lTableFilter.getBorder());
+        lTableFilter.setBorder(null);
         // Force fixed height filter box. Widht can vary, but height should remain the same.
         lTableFilter.setMaximumSize(new Dimension(10000, 50));
-        lTableBox.add(lTableFilter);
+        lTableBox.add(lFilterPanel);
         lTableBox.add(lTableViewScroll);
         lViews.add(lTableBox, Preferences.VIEW_TABLE);
         // Add right mouse button popup to the table view.
