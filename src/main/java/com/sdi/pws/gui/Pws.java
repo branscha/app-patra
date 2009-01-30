@@ -372,15 +372,29 @@ public class Pws
         final int lTextGap = 3;
 
         final Action lTableViewAction = new ViewTable(lViews, lRecordSelector, lTableSelector, lViewName);
-        JRadioButton lTableButton = new JRadioButton(lTableViewAction);
+        final JRadioButton lTableButton = new JRadioButton(lTableViewAction);
         lTableButton.setIconTextGap(lTextGap);
         lTableButton.setSelected(!lTableViewAction.isEnabled());
+        lTableViewAction.addPropertyChangeListener(new PropertyChangeListener()
+        {
+            public void propertyChange(PropertyChangeEvent aPropertyChangeEvent)
+            {
+                lTableButton.setSelected(!lTableViewAction.isEnabled());
+            }
+        });
         lViewMenu.add(lTableButton);
 
         final Action lTreeViewAction = new ViewTree(lViews, lRecordSelector, lTreeSelector, lViewName);
-        JRadioButton lTreeButton = new JRadioButton(lTreeViewAction);
+        final JRadioButton lTreeButton = new JRadioButton(lTreeViewAction);
         lTreeButton.setIconTextGap(lTextGap);
         lTreeButton.setSelected(!lTreeViewAction.isEnabled());
+        lTreeButton.addPropertyChangeListener(new PropertyChangeListener()
+        {
+            public void propertyChange(PropertyChangeEvent aPropertyChangeEvent)
+            {
+                lTreeButton.setSelected(!lTreeViewAction.isEnabled());
+            }
+        });
         lViewMenu.add(lTreeButton);
 
         // TODO work this out
