@@ -84,7 +84,7 @@ public class Start
         final JDialog lStartDialog = new JDialog(aApp);
         lStartDialog.setModal(true);
         // Set minimum dimensions so that the dialog does not shrink below workable size.
-        final int lMaxHeight = 220;
+        final int lMaxHeight = 210;
         lStartDialog.setMinimumSize(new Dimension(500, lMaxHeight));
         lStartDialog.setPreferredSize(new Dimension(600, lMaxHeight));
         lStartDialog.setMaximumSize(new Dimension(Integer.MAX_VALUE, lMaxHeight));
@@ -206,7 +206,7 @@ public class Start
         startPanel = new JPanel();
         startPanel.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
         startPanel.setMinimumSize(new Dimension(-1, -1));
-        startPanel.setPreferredSize(new Dimension(600, 220));
+        startPanel.setPreferredSize(new Dimension(600, 200));
         startPanel.setRequestFocusEnabled(false);
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 4, new Insets(0, 0, 0, 0), -1, -1));
@@ -257,7 +257,7 @@ public class Start
         headerPanel = new JPanel();
         headerPanel.setLayout(new GridLayoutManager(1, 2, new Insets(0, 0, 0, 0), 0, 0));
         headerPanel.setBackground(new Color(-1));
-        startPanel.add(headerPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        startPanel.add(headerPanel, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, new Dimension(-1, 66), new Dimension(-1, 66), new Dimension(-1, 66), 0, false));
         logo = new JLabel();
         logo.setIconTextGap(0);
         logo.setText("");

@@ -24,6 +24,7 @@ package com.sdi.pws.gui;
 
 import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.theme.SkyGreen;
+import com.jgoodies.looks.plastic.theme.DesertRed;
 import com.sdi.pws.codec.Codec2;
 import com.sdi.pws.db.PwsDatabaseImpl;
 import com.sdi.pws.gui.action.*;
@@ -75,7 +76,7 @@ public class Pws
     private static void startgGui()
     {
         // Set the look and feel.
-        PlasticLookAndFeel.setPlasticTheme(new SkyGreen());
+        PlasticLookAndFeel.setPlasticTheme(new DesertRed());
         try { UIManager.setLookAndFeel(new PlasticLookAndFeel()); } catch (Exception e) {}
 
         // Load user preferences.
