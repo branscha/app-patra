@@ -142,7 +142,7 @@ public class Pws
         final JPopupMenu lPopupMenu = new JPopupMenu();
 
         // Vertical button panel size.
-        final int lButtonPanelWidth = 25;
+        final int lButtonPanelWidth = 27;
 
         // Left button panel.
         final JPanel lLeftButtonPanel = new JPanel();
