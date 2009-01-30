@@ -47,6 +47,7 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
+import java.util.Map;
 
 public class Pws
 {
@@ -78,6 +79,10 @@ public class Pws
         // Set the look and feel.
         PlasticLookAndFeel.setPlasticTheme(new DesertRed());
         try { UIManager.setLookAndFeel(new PlasticLookAndFeel()); } catch (Exception e) {}
+
+        // Change the default JOptionPane icons.
+        UIManager.put("OptionPane.okIcon", new ImageIcon(Pws.class.getClassLoader().getResource("assets/go.png")));
+        UIManager.put("OptionPane.cancelIcon", new ImageIcon(Pws.class.getClassLoader().getResource("assets/cancel.png")));
 
         // Load user preferences.
         final Preferences lPrefs = new PreferencesImpl();

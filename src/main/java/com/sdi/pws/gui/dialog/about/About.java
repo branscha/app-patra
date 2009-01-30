@@ -22,17 +22,16 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 package com.sdi.pws.gui.dialog.about;
 
-import com.sdi.pws.gui.GuiUtil;
-import com.intellij.uiDesigner.core.GridLayoutManager;
 import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.sdi.pws.gui.GuiUtil;
+import com.sdi.pws.util.SwinglibUtil;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.MouseAdapter;
 import java.awt.event.MouseEvent;
 import java.net.URI;
-import java.net.URISyntaxException;
-import java.io.IOException;
 
 public class About
 {
@@ -68,7 +67,9 @@ public class About
         final About lAbout = new About();
         lAbout.aboutImage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         final JOptionPane lPane = new JOptionPane(lAbout.mainPanel, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
+
         final JDialog lDialog = lPane.createDialog(aApp, GuiUtil.getText("about.title"));
+        SwinglibUtil.processNestedComponents(lDialog, new SwinglibUtil.BackgroundColorChanger(Color.white));
         lDialog.setVisible(true);
     }
 
@@ -90,8 +91,10 @@ public class About
     {
         mainPanel = new JPanel();
         mainPanel.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        mainPanel.setBackground(new Color(-1));
         final JPanel panel1 = new JPanel();
         panel1.setLayout(new GridLayoutManager(1, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel1.setBackground(new Color(-1));
         mainPanel.add(panel1, new GridConstraints(0, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, null, null, null, 0, false));
         aboutImage = new JLabel();
         aboutImage.setIcon(new ImageIcon(getClass().getResource("/assets/pwt-about.jpg")));
