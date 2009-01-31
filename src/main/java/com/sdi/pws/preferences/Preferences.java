@@ -44,6 +44,7 @@ public interface Preferences
     static final String PREF_NR_BACKUPS = "PREF_NR_BACKUPS";
     static final String PREF_ADD_EXTENSION = "PREF_ADD_EXTENSION";
     static final String PREF_WARN_ON_EXPORT = "PREF_WARN_ON_EXPORT";
+    static final String PREF_STAY_ON_TOP = "PREF_STAY_ON_TOP";
 
     // Generator preferences.
     static final String PREF_GEN_LENGTH = "PREF_GEN_LENGTH";

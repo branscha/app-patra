@@ -68,6 +68,7 @@ public class Prefs
     private JCheckBox addExtension;
     private JSpinner nrBackups;
     private JCheckBox warnExport;
+    private JCheckBox stayPut;
 
     public Prefs(final Preferences aPrefs)
     {
@@ -169,6 +170,7 @@ public class Prefs
         aPrefs.setPreference(Preferences.PREF_ADD_EXTENSION, "" + addExtension.isSelected());
         aPrefs.setPreference(Preferences.PREF_NR_BACKUPS, "" + nrBackups.getValue());
         aPrefs.setPreference(Preferences.PREF_WARN_ON_EXPORT, "" + warnExport.isSelected());
+        aPrefs.setPreference(Preferences.PREF_STAY_ON_TOP, "" + stayPut.isSelected());
 
         // Retrieve the generator settings indirectly from the
         // generator model.
@@ -213,6 +215,7 @@ public class Prefs
             addExtension.setSelected(aPrefs.getBoolPref(Preferences.PREF_ADD_EXTENSION));
             nrBackups.setValue(new Integer(aPrefs.getIntPref(Preferences.PREF_NR_BACKUPS)));
             warnExport.setSelected(aPrefs.getBoolPref(Preferences.PREF_WARN_ON_EXPORT));
+            stayPut.setSelected(aPrefs.getBoolPref(Preferences.PREF_STAY_ON_TOP));
         }
         catch(PreferencesException eIgnore)
         {
@@ -345,7 +348,7 @@ public class Prefs
         final Spacer spacer3 = new Spacer();
         panel13.add(spacer3, new GridConstraints(0, 3, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_HORIZONTAL, GridConstraints.SIZEPOLICY_WANT_GROW, 1, null, null, null, 0, false));
         final JPanel panel14 = new JPanel();
-        panel14.setLayout(new GridLayoutManager(4, 1, new Insets(0, 0, 0, 0), -1, -1));
+        panel14.setLayout(new GridLayoutManager(5, 1, new Insets(0, 0, 0, 0), -1, -1));
         panel10.add(panel14, new GridConstraints(2, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_BOTH, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         panel14.setBorder(BorderFactory.createTitledBorder(ResourceBundle.getBundle("guiBundle").getString("preferences.otheroptions")));
         showPassword = new JCheckBox();
@@ -360,6 +363,9 @@ public class Prefs
         warnExport = new JCheckBox();
         this.$$$loadButtonText$$$(warnExport, ResourceBundle.getBundle("guiBundle").getString("preferences.otheroptions.exportwarn"));
         panel14.add(warnExport, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
+        stayPut = new JCheckBox();
+        this.$$$loadButtonText$$$(stayPut, ResourceBundle.getBundle("guiBundle").getString("preferences.otheroptions.stayontop"));
+        panel14.add(stayPut, new GridConstraints(4, 0, 1, 1, GridConstraints.ANCHOR_WEST, GridConstraints.FILL_NONE, GridConstraints.SIZEPOLICY_CAN_SHRINK | GridConstraints.SIZEPOLICY_CAN_GROW, GridConstraints.SIZEPOLICY_FIXED, null, null, null, 0, false));
         final Spacer spacer4 = new Spacer();
         panel10.add(spacer4, new GridConstraints(3, 0, 1, 1, GridConstraints.ANCHOR_CENTER, GridConstraints.FILL_VERTICAL, 1, GridConstraints.SIZEPOLICY_WANT_GROW, null, null, null, 0, false));
     }

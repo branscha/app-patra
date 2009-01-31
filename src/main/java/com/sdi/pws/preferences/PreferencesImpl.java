@@ -47,6 +47,7 @@ implements Preferences
         setPreference(PREF_NR_BACKUPS, "5");
         setPreference(PREF_ADD_EXTENSION, TRUE);
         setPreference(PREF_WARN_ON_EXPORT, TRUE);
+        setPreference(PREF_STAY_ON_TOP, FALSE);
 
         setPreference(PREF_GEN_LENGTH, "8");
         setPreference(PREF_GEN_READABLE, TRUE);

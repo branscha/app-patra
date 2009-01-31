@@ -47,7 +47,6 @@ import java.awt.*;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
-import java.util.Map;
 
 public class Pws
 {
@@ -78,7 +77,7 @@ public class Pws
     {
         // Set the look and feel.
         PlasticLookAndFeel.setPlasticTheme(new DesertRed());
-        try { UIManager.setLookAndFeel(new PlasticLookAndFeel()); } catch (Exception e) {}
+        try { UIManager.setLookAndFeel(new PlasticLookAndFeel()); } catch (Exception ignored) {}
 
         // Change the default JOptionPane icons.
         UIManager.put("OptionPane.okIcon", new ImageIcon(Pws.class.getClassLoader().getResource("assets/go.png")));
@@ -162,13 +161,13 @@ public class Pws
         JButton lLeftCopyPwd = new JButton();
         lLeftButtonPanel.add(lLeftCopyPwd);
         // Set startup visibility.
-        try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException eIgnore){}
+        try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException ignored){}
         // Set dynamic visibility.
         lGlobalPreferences.addPropertyChangeListener(Preferences.PREF_BUTTONS_LEFT, new PropertyChangeListener()
         {
             public void propertyChange(PropertyChangeEvent evt)
             {
-                try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException eIgnore){}
+                try{lLeftButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_LEFT));}catch(PreferencesException ignored){}
             }
         });
 
@@ -185,7 +184,7 @@ public class Pws
         JButton lRightCopyPWD = new JButton();
         lRightButtonPanel.add(lRightCopyPWD);
         // Set startup visibility.
-        try{lRightButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_RIGHT));}catch(PreferencesException eIgnore){}
+        try{lRightButtonPanel.setVisible(lGlobalPreferences.getBoolPref(Preferences.PREF_BUTTONS_RIGHT));}catch(PreferencesException ignored){}
         // Set dynamic visibility.
         lGlobalPreferences.addPropertyChangeListener(Preferences.PREF_BUTTONS_RIGHT, new PropertyChangeListener()
         {
@@ -397,10 +396,18 @@ public class Pws
         });
         lViewMenu.add(lTreeButton);
 
-        // TODO work this out
-        JCheckBox lStayPut =  new JCheckBox(" Stay on top", false);
+        // The stay on top option.
+        final JCheckBox lStayPut =  new JCheckBox(GuiUtil.getText("action.stayontop"));
+        try { lStayPut.setSelected(lGlobalPreferences.getBoolPref(Preferences.PREF_STAY_ON_TOP)); } catch(PreferencesException e) { }
         lStayPut.setIconTextGap(lTextGap);
         lViewMenu.add(lStayPut);
+        lStayPut.addPropertyChangeListener(new PropertyChangeListener()
+        {
+            public void propertyChange(PropertyChangeEvent aPropertyChangeEvent)
+            {
+                lAppFrame.setAlwaysOnTop(lStayPut.isSelected());
+            }
+        });
 
         final Action lFileUpgradeAction = new FileVersionUpgrade(lAppFrame.getRootPane(),lDbHolder, lGlobalPreferences);
         lConvertMenu.add(lFileUpgradeAction);
