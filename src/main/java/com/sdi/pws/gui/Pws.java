@@ -401,6 +401,7 @@ public class Pws
         try { lStayPut.setSelected(lGlobalPreferences.getBoolPref(Preferences.PREF_STAY_ON_TOP)); } catch(PreferencesException e) { }
         lStayPut.setIconTextGap(lTextGap);
         lViewMenu.add(lStayPut);
+        lAppFrame.setAlwaysOnTop(lStayPut.isSelected());
         lStayPut.addPropertyChangeListener(new PropertyChangeListener()
         {
             public void propertyChange(PropertyChangeEvent aPropertyChangeEvent)
