@@ -70,7 +70,7 @@ extends AbstractAction
             final PwsRecord lRecord = selector.getSelectedRecord();
             String lPwd = null;
             if(lRecord.hasType(PwsField.FIELD_PWD))
-                try{lPwd = lRecord.get(PwsField.FIELD_PWD).getAsString();}catch(Exception eIgnore){;}
+                try{lPwd = lRecord.get(PwsField.FIELD_PWD).getAsString();}catch(Exception eIgnore){ }
             monitor.grabOwnership();
             Toolkit.getDefaultToolkit().getSystemClipboard().setContents(new StringSelection(lPwd), monitor);
         }

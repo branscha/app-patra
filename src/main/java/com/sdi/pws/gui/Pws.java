@@ -26,8 +26,8 @@ import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.theme.DesertRed;
 import com.sdi.pws.codec.Codec2;
 import com.sdi.pws.db.PwsDatabaseImpl;
-import com.sdi.pws.db.PwsRecord;
 import com.sdi.pws.db.PwsField;
+import com.sdi.pws.db.PwsRecord;
 import com.sdi.pws.gui.action.*;
 import com.sdi.pws.gui.compo.db.change.ChangeViewDatabase;
 import com.sdi.pws.gui.compo.db.table.TableViewDatabase;
@@ -36,7 +36,6 @@ import com.sdi.pws.gui.compo.db.tree.TreeViewDatabase;
 import com.sdi.pws.gui.compo.db.tree.TreeViewSelector;
 import com.sdi.pws.gui.compo.preferences.change.ChangeViewPreferences;
 import com.sdi.pws.gui.dialog.start.Start;
-import com.sdi.pws.gui.dialog.edit.EditorUtil;
 import com.sdi.pws.preferences.PrefStorage;
 import com.sdi.pws.preferences.Preferences;
 import com.sdi.pws.preferences.PreferencesException;
@@ -48,7 +47,6 @@ import javax.help.HelpBroker;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
-import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -146,9 +144,6 @@ public class Pws
         lHelpItem.addActionListener(new CSH.DisplayHelpFromSource(lBroker));
         lHelpItem.setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_F1, 0));
         lHelpMenu.add(lHelpItem);
-
-        // Popup menu.
-        final JPopupMenu lPopupMenu = new JPopupMenu();
 
         // Vertical button panel size.
         final int lButtonPanelWidth = 27;
@@ -285,17 +280,14 @@ public class Pws
         lPasswordMenu.add(lCopyUidAction).setAccelerator(KeyStroke.getKeyStroke('U', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
         lLeftCopyUID.setAction(new ActionNoName(lCopyUidAction));
         lRightCopyUID.setAction(new ActionNoName(lCopyUidAction));
-        lPopupMenu.add(lCopyUidAction);
 
         final Action lCopyPwdAction = new CopyPwd(lRecordSelector, lMonitor);
         lPasswordMenu.add(lCopyPwdAction).setAccelerator(KeyStroke.getKeyStroke('P', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
         lLeftCopyPwd.setAction(new ActionNoName(lCopyPwdAction));
         lRightCopyPWD.setAction(new ActionNoName(lCopyPwdAction));
-        lPopupMenu.add(lCopyPwdAction);
 
         final Action lClearClipboardAction = new ClearClipboard(lMonitor);
         lPasswordMenu.add(lClearClipboardAction).setAccelerator(KeyStroke.getKeyStroke('D', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
-        lPopupMenu.add(lClearClipboardAction);
 
         final Action lOpenFileAction = new FileOpen(lAppFrame.getRootPane(), lDbHolder, lGlobalPreferences);
         lFileMenu.add(lOpenFileAction).setAccelerator(KeyStroke.getKeyStroke('O', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
@@ -334,8 +326,6 @@ public class Pws
         final Action lEditEntryAction = new EntryEdit(lAppFrame.getRootPane(), lRecordSelector, lDbHolder, lGlobalPreferences);
         lPasswordMenu.addSeparator();
         lPasswordMenu.add(lEditEntryAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0));
-        lPopupMenu.addSeparator();
-        lPopupMenu.add(lEditEntryAction);
         // Force the Enter key on the table and tree to do an edit.
         // If we don't force this, the enter will have the same effect as walking through the list/tree.
         lTableView.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_ENTER, 0), "EDIT");
@@ -345,7 +335,7 @@ public class Pws
 
         final Action lNewEntryAction = new EntryNew(lAppFrame.getRootPane(), lTreeModel, lGlobalPreferences);
         lPasswordMenu.add(lNewEntryAction).setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
-        lPopupMenu.add(lNewEntryAction);
+
         // Force the CTRL-A key on the table and tree to do a new.
         // If we don't force this, the CTRL-A will have the same effect as selecting all entries.
         lTableView.getInputMap().put(KeyStroke.getKeyStroke(KeyEvent.VK_A, InputEvent.CTRL_MASK), "NEW");
@@ -355,7 +345,6 @@ public class Pws
 
         final Action lDeleteEntryAction = new EntryDelete(lAppFrame.getRootPane(), lTreeModel, lRecordSelector);
         lPasswordMenu.add(lDeleteEntryAction).setAccelerator(KeyStroke.getKeyStroke(KeyEvent.VK_DELETE, 0));
-        lPopupMenu.add(lDeleteEntryAction);
 
         final int lTextGap = 3;
 
@@ -418,7 +407,7 @@ public class Pws
                     String lNotes = null;
                     if(lRecord != null && lRecord.hasType(PwsField.FIELD_NOTES))
                     {
-                        try { lNotes = lRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { ; }
+                        try { lNotes = lRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { }
                         java.util.List<String> lUrls = SwinglibUtil.extractUrl(lNotes);
                         if(lUrls.size() > 0)
                         {
@@ -464,7 +453,7 @@ public class Pws
                     String lNotes = null;
                     if(lRecord != null && lRecord.hasType(PwsField.FIELD_NOTES))
                     {
-                        try { lNotes = lRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { ; }
+                        try { lNotes = lRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { }
                         java.util.List<String> lUrls = SwinglibUtil.extractUrl(lNotes);
                         if(lUrls.size() > 0)
                         {
