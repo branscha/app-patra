@@ -26,6 +26,8 @@ import com.jgoodies.looks.plastic.PlasticLookAndFeel;
 import com.jgoodies.looks.plastic.theme.DesertRed;
 import com.sdi.pws.codec.Codec2;
 import com.sdi.pws.db.PwsDatabaseImpl;
+import com.sdi.pws.db.PwsRecord;
+import com.sdi.pws.db.PwsField;
 import com.sdi.pws.gui.action.*;
 import com.sdi.pws.gui.compo.db.change.ChangeViewDatabase;
 import com.sdi.pws.gui.compo.db.table.TableViewDatabase;
@@ -34,16 +36,19 @@ import com.sdi.pws.gui.compo.db.tree.TreeViewDatabase;
 import com.sdi.pws.gui.compo.db.tree.TreeViewSelector;
 import com.sdi.pws.gui.compo.preferences.change.ChangeViewPreferences;
 import com.sdi.pws.gui.dialog.start.Start;
+import com.sdi.pws.gui.dialog.edit.EditorUtil;
 import com.sdi.pws.preferences.PrefStorage;
 import com.sdi.pws.preferences.Preferences;
 import com.sdi.pws.preferences.PreferencesException;
 import com.sdi.pws.preferences.PreferencesImpl;
+import com.sdi.pws.util.SwinglibUtil;
 
 import javax.help.CSH;
 import javax.help.HelpBroker;
 import javax.swing.*;
 import javax.swing.border.EmptyBorder;
 import java.awt.*;
+import java.awt.datatransfer.StringSelection;
 import java.awt.event.*;
 import java.beans.PropertyChangeEvent;
 import java.beans.PropertyChangeListener;
@@ -221,27 +226,11 @@ public class Pws
         lTableBox.add(lFilterPanel);
         lTableBox.add(lTableViewScroll);
         lViews.add(lTableBox, Preferences.VIEW_TABLE);
-        // Add right mouse button popup to the table view.
-        lTableView.addMouseListener(new MouseAdapter()
-        {
-            public void mousePressed(MouseEvent e) { checkPopup(e); }
-            public void mouseClicked(MouseEvent e) { checkPopup(e); }
-            public void mouseReleased(MouseEvent e) { checkPopup(e); }
-            private void checkPopup(MouseEvent e) { if (e.isPopupTrigger()) lPopupMenu.show(lTableView, e.getX(), e.getY()); }
-        });
 
         // Tree view.
         final JTree lTreeView = new JTree();
         final JScrollPane lTreeViewScroll = new JScrollPane(lTreeView);
         lViews.add(lTreeViewScroll, Preferences.VIEW_TREE);
-        // Add right mouse button popup.
-        lTreeView.addMouseListener(new MouseAdapter()
-        {
-            public void mousePressed(MouseEvent e) { checkPopup(e); }
-            public void mouseClicked(MouseEvent e) { checkPopup(e); }
-            public void mouseReleased(MouseEvent e) { checkPopup(e); }
-            private void checkPopup(MouseEvent e) { if (e.isPopupTrigger()) lPopupMenu.show(lTreeView, e.getX(), e.getY()); }
-        });
 
         // Select current view and initialize view name holder.
         final String lDefaultView = lGlobalPreferences.getPref(Preferences.PREF_DEFAULT_VIEW);
@@ -407,6 +396,98 @@ public class Pws
             public void propertyChange(PropertyChangeEvent aPropertyChangeEvent)
             {
                 lAppFrame.setAlwaysOnTop(lStayPut.isSelected());
+            }
+        });
+
+        // Add right mouse button popup to the table view.
+        lTableView.addMouseListener(new MouseAdapter()
+        {
+            public void mousePressed(MouseEvent e) { checkPopup(e); }
+            public void mouseClicked(MouseEvent e) { checkPopup(e); }
+            public void mouseReleased(MouseEvent e) { checkPopup(e); }
+            private void checkPopup(MouseEvent e)
+            {
+                if (e.isPopupTrigger())
+                {
+                    // See if we have a selection.
+                    final PwsRecord lRecord = lRecordSelector.getSelectedRecord();
+
+                    // Create an array of URL actions if there any URL's hidden in the notes field.
+                    // URL actions are only possible if there is a selected record.
+                    Action[] lUrlActions = null;
+                    String lNotes = null;
+                    if(lRecord != null && lRecord.hasType(PwsField.FIELD_NOTES))
+                    {
+                        try { lNotes = lRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { ; }
+                        java.util.List<String> lUrls = SwinglibUtil.extractUrl(lNotes);
+                        if(lUrls.size() > 0)
+                        {
+                            lUrlActions = new Action[lUrls.size()];
+                            for(int i = 0; i < lUrls.size(); i++) lUrlActions[i] = new BrowseUrl(lUrls.get(i));
+                        }
+                    }
+                    // Create the popup menu dynamically.
+                    JPopupMenu lPop;
+                    if(lUrlActions != null && lUrlActions.length > 0)
+                    {
+                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
+                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction},
+                                                         lUrlActions);
+                    }
+                    else
+                    {
+                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
+                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction});
+                    }
+                    // Show the popup to the user.
+                    lPop.show(lTableView, e.getX(), e.getY());
+                }
+            }
+        });
+        // Add right mouse button popup.
+        lTreeView.addMouseListener(new MouseAdapter()
+        {
+            public void mousePressed(MouseEvent e) { checkPopup(e); }
+            public void mouseClicked(MouseEvent e) { checkPopup(e); }
+            public void mouseReleased(MouseEvent e) { checkPopup(e); }
+            private void checkPopup(MouseEvent e)
+            {
+                if (e.isPopupTrigger())
+                {
+
+                // See if we have a selection.
+                    final PwsRecord lRecord = lRecordSelector.getSelectedRecord();
+
+                    // Create an array of URL actions if there any URL's hidden in the notes field.
+                    // URL actions are only possible if there is a selected record.
+                    Action[] lUrlActions = null;
+                    String lNotes = null;
+                    if(lRecord != null && lRecord.hasType(PwsField.FIELD_NOTES))
+                    {
+                        try { lNotes = lRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { ; }
+                        java.util.List<String> lUrls = SwinglibUtil.extractUrl(lNotes);
+                        if(lUrls.size() > 0)
+                        {
+                            lUrlActions = new Action[lUrls.size()];
+                            for(int i = 0; i < lUrls.size(); i++) lUrlActions[i] = new BrowseUrl(lUrls.get(i));
+                        }
+                    }
+                    // Create the popup menu dynamically.
+                    JPopupMenu lPop;
+                    if(lUrlActions != null && lUrlActions.length > 0)
+                    {
+                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
+                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction},
+                                                         lUrlActions);
+                    }
+                    else
+                    {
+                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
+                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction});
+                    }
+                    // Show the popup to the user.
+                    lPop.show(lTreeView, e.getX(), e.getY());
+                }
             }
         });
 
