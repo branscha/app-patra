@@ -26,6 +26,9 @@ import com.sdi.pws.db.PwsRecord;
 import com.sdi.pws.db.PwsFieldImpl;
 import com.sdi.pws.db.ModelException;
 
+import java.util.List;
+import java.util.ArrayList;
+
 /**
  * Class that contains utility methods to handle the input from the GUI and to
  * transform it into a real value.
@@ -85,5 +88,30 @@ public class EditorUtil
     {
         if(aSource == null) return EMPTY;
         else return aSource;
+    }
+
+    /**
+     * Make a list of all URL's that can be found in a string.
+     * @param aSource  A string, possibly containing URL's.
+     * @return A List of URL's that could be scraped from the string.
+     */
+    static List<String> extractUrl(String aSource)
+    {
+        final String lPrefix = "http://";
+        final List<String> lResult = new ArrayList<String>();
+        String lTodo = aSource;
+        int lUrlPos = lTodo.indexOf(lPrefix);
+        while (lUrlPos >= 0)
+        {
+            lUrlPos += lPrefix.length();
+            StringBuffer lUrlBuf = new  StringBuffer();
+            while((lUrlPos < lTodo.length()) && lTodo.charAt(lUrlPos) != '\n' && !Character.isSpaceChar(lTodo.charAt(lUrlPos))) lUrlBuf.append(lTodo.charAt(lUrlPos++));
+            lResult.add(lUrlBuf.toString());
+
+            if(lUrlPos < lTodo.length()) lTodo = lTodo.substring(lUrlPos);
+            else lTodo = "";
+            lUrlPos = lTodo.indexOf(lPrefix);
+        }
+        return lResult;
     }
 }

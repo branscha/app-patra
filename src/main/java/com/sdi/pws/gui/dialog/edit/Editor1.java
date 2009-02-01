@@ -22,26 +22,25 @@ Foundation, Inc., 51 Franklin St, Fifth Floor, Boston, MA  02110-1301  USA
 
 package com.sdi.pws.gui.dialog.edit;
 
+import com.intellij.uiDesigner.core.GridConstraints;
+import com.intellij.uiDesigner.core.GridLayoutManager;
+import com.intellij.uiDesigner.core.Spacer;
 import com.sdi.pws.db.*;
 import com.sdi.pws.generator.Generator;
-import com.sdi.pws.gui.GuiUtil;
 import com.sdi.pws.gui.CyclicFocusPolicy;
+import com.sdi.pws.gui.GuiUtil;
 import com.sdi.pws.gui.dialog.generate.Generate;
 import com.sdi.pws.preferences.Preferences;
 import com.sdi.pws.preferences.PreferencesException;
 import com.sdi.pws.util.PreferencesUtil;
-import com.intellij.uiDesigner.core.GridLayoutManager;
-import com.intellij.uiDesigner.core.SupportCode;
-import com.intellij.uiDesigner.core.GridConstraints;
-import com.intellij.uiDesigner.core.Spacer;
 
 import javax.help.HelpBroker;
 import javax.swing.*;
 import javax.swing.event.ChangeEvent;
 import javax.swing.event.ChangeListener;
+import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.awt.*;
 import java.util.ResourceBundle;
 
 /**
@@ -51,7 +50,7 @@ import java.util.ResourceBundle;
  */
 public class Editor1
 {
-    private JTextPane notes;
+    private JEditorPane notes;
     private JPasswordField pwd;
     private JTextField uid;
     private JTextField title;
@@ -178,42 +177,10 @@ public class Editor1
      */
     private void populate(PwsRecord aRecord)
     {
-        if(aRecord.hasType(PwsField.FIELD_TITLE)) try
-        {
-            origTitle = aRecord.get(PwsField.FIELD_TITLE).getAsString();
-        }
-        catch(Exception eIgnore)
-        {
-            ;
-        }
-        ;
-        if(aRecord.hasType(PwsField.FIELD_UID)) try
-        {
-            origUid = aRecord.get(PwsField.FIELD_UID).getAsString();
-        }
-        catch(Exception eIgnore)
-        {
-            ;
-        }
-        ;
-        if(aRecord.hasType(PwsField.FIELD_PWD)) try
-        {
-            origPwd = aRecord.get(PwsField.FIELD_PWD).getAsString();
-        }
-        catch(Exception eIgnore)
-        {
-            ;
-        }
-        ;
-        if(aRecord.hasType(PwsField.FIELD_NOTES)) try
-        {
-            origNotes = aRecord.get(PwsField.FIELD_NOTES).getAsString();
-        }
-        catch(Exception eIgnore)
-        {
-            ;
-        }
-        ;
+        if(aRecord.hasType(PwsField.FIELD_TITLE)) try { origTitle = aRecord.get(PwsField.FIELD_TITLE).getAsString(); } catch(Exception eIgnore) { ; } ;
+        if(aRecord.hasType(PwsField.FIELD_UID)) try { origUid = aRecord.get(PwsField.FIELD_UID).getAsString(); } catch(Exception eIgnore) { ; } ;
+        if(aRecord.hasType(PwsField.FIELD_PWD)) try { origPwd = aRecord.get(PwsField.FIELD_PWD).getAsString(); } catch(Exception eIgnore) { ; } ;
+        if(aRecord.hasType(PwsField.FIELD_NOTES)) try { origNotes = aRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { ; } ;
 
         title.setText(EditorUtil.expandNull(origTitle));
         uid.setText(EditorUtil.expandNull(origUid));

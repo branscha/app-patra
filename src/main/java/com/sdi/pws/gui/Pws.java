@@ -355,7 +355,7 @@ public class Pws
         lTreeView.getActionMap().put("EDIT", lEditEntryAction);
 
         final Action lNewEntryAction = new EntryNew(lAppFrame.getRootPane(), lTreeModel, lGlobalPreferences);
-        lPasswordMenu.add(lNewEntryAction).setAccelerator(KeyStroke.getKeyStroke('A', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
+        lPasswordMenu.add(lNewEntryAction).setAccelerator(KeyStroke.getKeyStroke('E', Toolkit.getDefaultToolkit().getMenuShortcutKeyMask(), false));
         lPopupMenu.add(lNewEntryAction);
         // Force the CTRL-A key on the table and tree to do a new.
         // If we don't force this, the CTRL-A will have the same effect as selecting all entries.
