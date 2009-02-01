@@ -224,6 +224,7 @@ public class Pws
 
         // Tree view.
         final JTree lTreeView = new JTree();
+        lTreeView.setBorder(new EmptyBorder(3, 3, 3, 3));
         final JScrollPane lTreeViewScroll = new JScrollPane(lTreeView);
         lViews.add(lTreeViewScroll, Preferences.VIEW_TREE);
 
