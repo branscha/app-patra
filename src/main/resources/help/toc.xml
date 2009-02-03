@@ -1,19 +1,22 @@
 <?xml version="1.0" encoding="ISO-8859-1"?>
-<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN" "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+
+<!DOCTYPE toc PUBLIC "-//Sun Microsystems Inc.//DTD JavaHelp TOC Version 1.0//EN"
+        "http://java.sun.com/products/javahelp/toc_2_0.dtd">
+        
 <toc version="2.0">
-  <tocitem expand="true" target="intro_html" text="Introduction"/>
-  <tocitem target="quickstart_html" text="quickstart"/>
-  <tocitem expand="false" text="Manual">
-    <tocitem target="startscreen_html" text="Start Screen"/>
-    <tocitem target="mainscreen_html" text="Main Screen"/>
-    <tocitem target="importexport_html" text="Import/Export a Safe"/>
-    <tocitem target="editentry_html" text="Edit a Password Entry"/>
-    <tocitem target="generator_html" text="Password Generator"/>
-    <tocitem target="preferences_html" text="Preferences"/>
-    <tocitem target="clipboard_html" text="Using the Clipboard"/>
-  </tocitem>
-  <tocitem expand="false" text="Licenses">
-    <tocitem target="jgoodies-license_html" text="JGoodies License"/>
-    <tocitem target="pwt-license_html" text="Gnu GPL License"/>
-  </tocitem>
+    <tocitem expand="true" target="intro_html" text="Introduction"/>
+    <tocitem target="quickstart_html" text="quickstart"/>
+    <tocitem expand="false" text="Manual">
+        <tocitem target="startscreen_html" text="Start Screen"/>
+        <tocitem target="mainscreen_html" text="Main Screen"/>
+        <tocitem target="importexport_html" text="Import/Export a Safe"/>
+        <tocitem target="editentry_html" text="Edit a Password Entry"/>
+        <tocitem target="generator_html" text="Password Generator"/>
+        <tocitem target="preferences_html" text="Preferences"/>
+        <tocitem target="clipboard_html" text="Using the Clipboard"/>
+    </tocitem>
+    <tocitem expand="false" text="Licenses">
+        <tocitem target="jgoodies-license_html" text="JGoodies License"/>
+        <tocitem target="pwt-license_html" text="Gnu GPL License"/>
+    </tocitem>
 </toc>
