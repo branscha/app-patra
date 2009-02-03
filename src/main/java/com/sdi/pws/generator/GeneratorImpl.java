@@ -35,7 +35,7 @@ implements Generator
     private boolean isNumbersIncluded = true;
     private boolean isPunctuationIncluded = false;
     private byte[] entropy = new byte[]{2, 5, 3, 1, 2, 6, 7, 4, 5, 6 , 7, 5, 4};
-    private StringBuffer alphabet = null;
+    private StringBuilder alphabet = null;
     private double alphabetQuality = 0.0;
 
     private static final String charUp = "ABCDEFGHIJKLMNOPQRSTUVWXYZ";
@@ -56,7 +56,7 @@ implements Generator
         {
             // Only lower case letters are used ...
             // The quality decreases fast!
-            alphabet = new StringBuffer(charLow);
+            alphabet = new StringBuilder(charLow);
             alphabet.append(vowels).append(vowels); // Increase chanse to have vowels.
             alphabetQuality = Math.log(charLow.length())/Math.log(Math.E);
         }
@@ -64,7 +64,7 @@ implements Generator
         {
             // Compose the alphabet.
             // The quality depends on the options.
-            alphabet = new StringBuffer(charLow);
+            alphabet = new StringBuilder(charLow);
             if(isMixedCase) alphabet.append(charUp);
             if(isNumbersIncluded) alphabet.append(numbers);
             if(isPunctuationIncluded) alphabet.append(punctuation);
@@ -107,7 +107,7 @@ implements Generator
             }
 
             // Translate the password bytes into a string.
-            StringBuffer lPwdBuf = new StringBuffer();
+            StringBuilder lPwdBuf = new StringBuilder();
             for(int i = 0; i < lPwdCandidate.length; i++)
             {
                 int lSrc = lPwdCandidate[i] % alphabet.length();

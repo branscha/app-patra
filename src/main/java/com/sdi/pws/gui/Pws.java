@@ -30,6 +30,7 @@ import com.sdi.pws.db.PwsField;
 import com.sdi.pws.db.PwsRecord;
 import com.sdi.pws.gui.action.*;
 import com.sdi.pws.gui.compo.db.change.ChangeViewDatabase;
+import com.sdi.pws.gui.compo.db.change.ChangeViewField;
 import com.sdi.pws.gui.compo.db.table.TableViewDatabase;
 import com.sdi.pws.gui.compo.db.table.TableViewSelector;
 import com.sdi.pws.gui.compo.db.tree.TreeViewDatabase;
@@ -204,6 +205,8 @@ public class Pws
         final JTable lTableView = new JTable();
         lTableView.setSelectionMode(ListSelectionModel.SINGLE_SELECTION);
         final JScrollPane lTableViewScroll = new JScrollPane(lTableView);
+        final FilteredCellRenderer lFilteredRenderer = new FilteredCellRenderer();
+        lTableView.setDefaultRenderer(ChangeViewField.class, lFilteredRenderer);
         final Box lTableBox = Box.createVerticalBox();
         // Create the filter panel.
         final JPanel lFilterPanel = new JPanel();
@@ -217,7 +220,7 @@ public class Pws
         lFilterPanel.setBorder(lTableFilter.getBorder());
         lTableFilter.setBorder(null);
         // Force fixed height filter box. Widht can vary, but height should remain the same.
-        lTableFilter.setMaximumSize(new Dimension(10000, 50));
+        lFilterPanel.setMaximumSize(new Dimension(10000, 50));
         lTableBox.add(lFilterPanel);
         lTableBox.add(lTableViewScroll);
         lViews.add(lTableBox, Preferences.VIEW_TABLE);
@@ -252,9 +255,18 @@ public class Pws
         // Add a filter feedback.
         lTableFilter.addKeyListener(new KeyListener()
         {
-            public void keyPressed(KeyEvent e) { lFilteredTableModel.search(lTableFilter.getText()); }
-            public void keyReleased(KeyEvent e) { lFilteredTableModel.search(lTableFilter.getText()); }
+            public void keyPressed(KeyEvent e) {doit(); }
+            public void keyReleased(KeyEvent e) { doit(); }
             public void keyTyped(KeyEvent e) { }
+            private void doit()
+            {
+                // Apply the search pattern to the table model.
+                final String lSearchString = lTableFilter.getText();
+                lFilteredRenderer.setSearchString(lSearchString);
+                lFilteredTableModel.search(lSearchString);
+                // If there is one and only one row left in the table, we automatically select it.
+                if(lFilteredTableModel.getRowCount() == 1) lTableView.getSelectionModel().setSelectionInterval(0,0);
+            }
         });
 
         // Selector.
@@ -418,17 +430,10 @@ public class Pws
                     }
                     // Create the popup menu dynamically.
                     JPopupMenu lPop;
-                    if(lUrlActions != null && lUrlActions.length > 0)
-                    {
+
                         lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
                                                          new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction},
                                                          lUrlActions);
-                    }
-                    else
-                    {
-                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
-                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction});
-                    }
                     // Show the popup to the user.
                     lPop.show(lTableView, e.getX(), e.getY());
                 }
@@ -464,17 +469,10 @@ public class Pws
                     }
                     // Create the popup menu dynamically.
                     JPopupMenu lPop;
-                    if(lUrlActions != null && lUrlActions.length > 0)
-                    {
-                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
-                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction},
-                                                         lUrlActions);
-                    }
-                    else
-                    {
-                        lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
-                                                         new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction});
-                    }
+                    lPop = SwinglibUtil.popupBuilder(new Action[]{lCopyUidAction, lCopyPwdAction, lClearClipboardAction},
+                                                     new Action[]{lEditEntryAction, lNewEntryAction, lDeleteEntryAction},
+                                                     lUrlActions);
+
                     // Show the popup to the user.
                     lPop.show(lTreeView, e.getX(), e.getY());
                 }

@@ -255,7 +255,7 @@ implements PwsDatabase, ChangeViewDatabaseListener
             String[] lBanana = aGroup.split("\\.");
             // Now we have to many pieces. Join the pieces that ended with backslash.
             final List lParts = new LinkedList();
-            StringBuffer lCurrentPart = null;
+            StringBuilder lCurrentPart = null;
             for(int i = 0; i < lBanana.length; i++)
             {
                 final String lPart = lBanana[i];
@@ -264,7 +264,7 @@ implements PwsDatabase, ChangeViewDatabaseListener
                     // The part contains a continuation character.
                     // So we have to put it in the buffer.
                     final String lCleanPart = removeDoubleBackslash(lPart.substring(0, lPart.length()-1));
-                    if(lCurrentPart == null) lCurrentPart = new StringBuffer(lCleanPart).append(".");
+                    if(lCurrentPart == null) lCurrentPart = new StringBuilder(lCleanPart).append(".");
                     else lCurrentPart.append(lCleanPart);
                 }
                 else
@@ -290,7 +290,7 @@ implements PwsDatabase, ChangeViewDatabaseListener
 
     private String removeDoubleBackslash(String aSource)
     {
-        final StringBuffer lResult = new StringBuffer();
+        final StringBuilder lResult = new StringBuilder();
 
         int lIndex = aSource.indexOf("\\\\");
         while(lIndex >= 0)

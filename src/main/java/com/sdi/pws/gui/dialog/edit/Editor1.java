@@ -177,10 +177,42 @@ public class Editor1
      */
     private void populate(PwsRecord aRecord)
     {
-        if(aRecord.hasType(PwsField.FIELD_TITLE)) try { origTitle = aRecord.get(PwsField.FIELD_TITLE).getAsString(); } catch(Exception eIgnore) { ; } ;
-        if(aRecord.hasType(PwsField.FIELD_UID)) try { origUid = aRecord.get(PwsField.FIELD_UID).getAsString(); } catch(Exception eIgnore) { ; } ;
-        if(aRecord.hasType(PwsField.FIELD_PWD)) try { origPwd = aRecord.get(PwsField.FIELD_PWD).getAsString(); } catch(Exception eIgnore) { ; } ;
-        if(aRecord.hasType(PwsField.FIELD_NOTES)) try { origNotes = aRecord.get(PwsField.FIELD_NOTES).getAsString(); } catch(Exception eIgnore) { ; } ;
+        if(aRecord.hasType(PwsField.FIELD_TITLE)) try
+        {
+            origTitle = aRecord.get(PwsField.FIELD_TITLE).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_UID)) try
+        {
+            origUid = aRecord.get(PwsField.FIELD_UID).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_PWD)) try
+        {
+            origPwd = aRecord.get(PwsField.FIELD_PWD).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
+        if(aRecord.hasType(PwsField.FIELD_NOTES)) try
+        {
+            origNotes = aRecord.get(PwsField.FIELD_NOTES).getAsString();
+        }
+        catch(Exception eIgnore)
+        {
+            ;
+        }
+        ;
 
         title.setText(EditorUtil.expandNull(origTitle));
         uid.setText(EditorUtil.expandNull(origUid));

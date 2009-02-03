@@ -3,6 +3,7 @@ package com.sdi.pws.util;
 import javax.swing.*;
 import java.awt.*;
 import java.util.ArrayList;
+import java.util.LinkedList;
 
 public class SwinglibUtil
 {
@@ -86,7 +87,7 @@ public class SwinglibUtil
         while (lUrlPos >= 0)
         {
             lUrlPos += lPrefix.length();
-            StringBuffer lUrlBuf = new  StringBuffer();
+            StringBuilder lUrlBuf = new  StringBuilder();
             while((lUrlPos < lTodo.length()) && lTodo.charAt(lUrlPos) != '\n' && !Character.isSpaceChar(lTodo.charAt(lUrlPos))) lUrlBuf.append(lTodo.charAt(lUrlPos++));
             lResult.add(lUrlBuf.toString());
 
@@ -97,13 +98,27 @@ public class SwinglibUtil
         return lResult;
     }
 
+    /**
+     * Make a popu menu using lists of actions. Each action list will be separated by
+     * a menu separator. Empty action lists, or null-valued action lists will be ignored as if
+     * the were not there.
+     * @param aActionLists
+     * @return A popup menu.
+     */
     public static JPopupMenu popupBuilder(Action[] ... aActionLists)
     {
+        // Prepare the popup.
         final JPopupMenu lMenu = new JPopupMenu();
-        for(int i = 0; i < aActionLists.length; i++)
+
+        // First we are going to filter out the empty lists.
+        final java.util.List<Action[]> lActionList = new ArrayList<Action[]>();
+        for(Action[] lList : aActionLists) if(lList != null && lList.length > 0) lActionList.add(lList);
+
+        // Build the popup menu.
+        for(int i = 0; i < lActionList.size(); i++)
         {
-            for(Action lAction: aActionLists[i]) lMenu.add(lAction);
-            if( i < aActionLists.length - 1) lMenu.addSeparator();
+            for(Action lAction: lActionList.get(i)) lMenu.add(lAction);
+            if( i < lActionList.size() - 1) lMenu.addSeparator();
         }
         return lMenu;
     }

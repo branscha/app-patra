@@ -125,7 +125,7 @@ implements Codec
             {
                 try
                 {
-                    final StringBuffer lBuf = new StringBuffer();
+                    final StringBuilder lBuf = new StringBuilder();
                     final PwsRecord lRec = (PwsRecord) lIter.next();
 
                     if(lRec.hasType(PwsField.FIELD_TITLE))
@@ -184,7 +184,7 @@ implements Codec
     // Surround with quotes.
     public String csvEncode(String aString)
     {
-        final StringBuffer lBuf = new StringBuffer();
+        final StringBuilder lBuf = new StringBuilder();
         for(int i = 0; i < aString.length(); i++)
         {
             char lChar = aString.charAt(i);
@@ -204,7 +204,7 @@ implements Codec
     public String csvDecode(String aString)
     {
         aString = aString + "@";
-        StringBuffer lBuf = new StringBuffer();
+        StringBuilder lBuf = new StringBuilder();
         for(int i = 0; i < aString.length() - 1; i++)
         {
             char lChar = aString.charAt(i);

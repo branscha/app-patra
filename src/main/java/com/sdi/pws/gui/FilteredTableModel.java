@@ -29,11 +29,11 @@ import javax.swing.event.TableModelListener;
 import javax.swing.table.*;
 
 public class FilteredTableModel
-        extends AbstractTableModel
+extends AbstractTableModel
 {
     private TableModel decorated;
     private TableModelListener tableModelListener;
-    private List rowToModelIndex = new LinkedList();
+    private List<Integer> rowToModelIndex = new LinkedList<Integer>();
     private String searchString = null;
 
     public FilteredTableModel(TableModel aTableModel)
@@ -74,22 +74,22 @@ public class FilteredTableModel
             // Create an identity mapping.
             for (int t = 0; t < decorated.getRowCount(); t++)
             {
-                rowToModelIndex.add(new Integer(t));
+                rowToModelIndex.add(t);
             }
         }
         else
         {
             // Filter out the rows containing the search string.
             final String lRealSearch = searchString.toLowerCase();
-            for (int row = 0; row < decorated.getRowCount(); row++)
+            for (int lRowIndex = 0; lRowIndex < decorated.getRowCount(); lRowIndex++)
             {
                 for (int column = 0; column < decorated.getColumnCount(); column++)
                 {
-                    final String lValue = decorated.getValueAt(row, column).toString();
+                    final String lValue = decorated.getValueAt(lRowIndex, column).toString();
                     String columnValue = lValue.toLowerCase();
                     if (columnValue.indexOf(lRealSearch) >= 0)
                     {
-                        rowToModelIndex.add(new Integer(row));
+                        rowToModelIndex.add(lRowIndex);
                         break;
                     }
                 }
@@ -99,14 +99,17 @@ public class FilteredTableModel
 
     public void search(String aSearchString)
     {
-        searchString  = aSearchString;
-        reindex();
-        fireTableDataChanged();
+        if(aSearchString != null && !aSearchString.equals(searchString))
+        {
+            searchString  = aSearchString;
+            reindex();
+            fireTableDataChanged();
+        }
     }
 
     private int getModelRow(int aRow)
     {
-        return ((Integer) rowToModelIndex.get(aRow)).intValue();
+        return rowToModelIndex.get(aRow);
     }
 
     public int getRowCount()
@@ -137,6 +140,7 @@ public class FilteredTableModel
     public Object getValueAt(int aRow, int aCol)
     {
         return decorated.getValueAt(getModelRow(aRow), aCol);
+        //return toHtml(decorated.getValueAt(getModelRow(aRow), aCol).toString(), searchString);
     }
 
     public void setValueAt(Object aValue, int aRow, int aCol)
@@ -164,7 +168,6 @@ public class FilteredTableModel
             reindex();
             search(searchString);
             fireTableDataChanged();
-            return;
         }
     }
 }

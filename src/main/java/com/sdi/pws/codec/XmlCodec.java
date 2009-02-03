@@ -113,7 +113,7 @@ implements Codec
 
                 try
                 {
-                    final StringBuffer lBuf = new StringBuffer();
+                    final StringBuilder lBuf = new StringBuilder();
                     lBuf.append("   <record>");
 
                     if (lRec.hasType(PwsField.FIELD_TITLE))
@@ -165,7 +165,7 @@ implements Codec
         if (str == null) return null;
         int l = str.length();
         if (l == 0) return str;
-        StringBuffer result = new StringBuffer((int)( l * 1.1));
+        StringBuilder result = new StringBuilder((int)( l * 1.1));
         for (int i = 0; i<l; i++)
         {
             char c = str.charAt(i);
