@@ -38,6 +38,7 @@ a:hover {
 .myTable th {
     background-color: #999999;
     color: #eeeeee;
+    font-weight: bold;
 }
 
 .myTable td {
@@ -49,12 +50,10 @@ a:hover {
     padding-right: 4px;
 }
 
-.myTable .myRowOdd td {
+.myTable .myOddRow td {
     background-color: #dddddd;
 }
 
-.myTable .myTableEven td {
-    background-color: #999999;
-    color: #eeeeee;
-    font-weight: bold;
+.myTable .myEvenRow td {
+    background-color: #eeeeee;
 }

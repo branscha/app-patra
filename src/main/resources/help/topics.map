@@ -18,4 +18,6 @@
     <mapID target="preferences_html" url="docs/preferences.html"/>
     <mapID target="startscreen_html" url="docs/startscreen.html"/>
     <mapID target="intro_html" url="docs/intro.html"/>
+    <mapID target="tips_html" url="docs/tips.html" />
+    <mapID target="shortcuts_html" url="docs/shortcuts.html" />
 </map>

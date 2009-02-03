@@ -14,6 +14,8 @@
         <tocitem target="generator_html" text="Password Generator" image="file"/>
         <tocitem target="preferences_html" text="Preferences" image="file"/>
         <tocitem target="clipboard_html" text="Using the Clipboard" image="file"/>
+        <tocitem target="tips_html" text="Tips" image="file" />
+        <tocitem target="shortcuts_html" text="Keyboard Shortcuts" image="file" />
     </tocitem>
     <tocitem expand="false" text="Licenses" image="folder">
         <tocitem target="jgoodies-license_html" text="JGoodies License" image="file"/>
