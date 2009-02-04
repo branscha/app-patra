@@ -28,6 +28,9 @@
         <pack name="Base" required="yes">
             <description>The base files</description>
             <singlefile src="target/patra-1.4-SNAPSHOT-jar-with-dependencies.jar" target="$INSTALL_PATH/patra-1.4.jar"/>
+            <singlefile src="src/main/installers/unix/patra.sh" target="$INSTALL_PATH/patra-1.4.sh"/>
+            <singlefile src="src/main/installers/unix/pwt-icon.png" target="$INSTALL_PATH/patra-icon.png"/>
+            <singlefile src="src/main/installers/unix/pwt-icon-small.png" target="$INSTALL_PATH/patra-icon-small.png"/>
         </pack>
     </packs>
     
