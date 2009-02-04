@@ -1,6 +1,6 @@
 #!/bin/bash
 
-$APPJAR="patra-1.4.jar"
+APPJAR="patra-1.4.jar"
 
 # Change the directory in case we were started from a graphical shell like Nautilus
 cd "`dirname "$0"`"

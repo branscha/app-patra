@@ -1,6 +1,6 @@
 <installation version="1.0">
 
-    <!-- izpack izpack.xml -b . -o target/pwt-1.4-install-other.jar -k standard -->
+    <!-- izpack src/main/installers/unix/izpack.xml -b . -o target/pwt-1.4-install-unix.jar -k standard -->
     <info>
         <appname>Password Tracker</appname>
         <appsubpath>patra-1.4</appsubpath>
@@ -31,6 +31,7 @@
             <singlefile src="src/main/installers/unix/patra.sh" target="$INSTALL_PATH/patra-1.4.sh"/>
             <singlefile src="src/main/installers/unix/pwt-icon.png" target="$INSTALL_PATH/patra-icon.png"/>
             <singlefile src="src/main/installers/unix/pwt-icon-small.png" target="$INSTALL_PATH/patra-icon-small.png"/>
+            <executable targetfile="$INSTALL_PATH/patra-1.4.sh" stage="never" keep="true" />
         </pack>
     </packs>
     
