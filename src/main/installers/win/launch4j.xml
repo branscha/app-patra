@@ -12,7 +12,7 @@
   <customProcName>false</customProcName>
   <stayAlive>false</stayAlive>
   <manifest></manifest>
-  <icon>/Users/branscha/Documents/projects/svn-sourceforge/patra-trunk/src/main/resources/assets/pwt-icon-vista.ico</icon>
+  <icon>/Users/branscha/Documents/projects/svn-sourceforge/patra-trunk/src/main/installers/win/pwt-icon.ico</icon>
   <jre>
     <path></path>
     <minVersion>1.6.0</minVersion>
