@@ -1,11 +1,7 @@
 Andere issues
 =============
 Cosmetics:
- Find some icons for the actions.         ====> Kept Sun icons due to license issues with other sets.
- Find graphics to insert in dialog boxes. ====> No reason to do so.
- Use icons from istockphoto, use jgoodies look and feel (look at examples), buy psp to manipulate graphics.
- Use Install4j for installation prg.
- (INCORS has commercial look and feel + icon sets)
+ -
 
 Afgeschoten - geen plannen meer
 ===============================
