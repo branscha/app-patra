@@ -130,34 +130,6 @@ extends AbstractAction
                             }
                         }
                     }
-
-                    // Check the 1->2 conversion feature.
-                    /////////////////////////////////////
-                    final Action lUpgrade = new FileVersionUpgrade(application, dbHolder, prefs);
-                    final Codec lSelected = lAutoCodec.getSelected();
-                    if (lSelected instanceof Codec1)
-                    {
-                        final String lConvertMode = prefs.getPref(Preferences.PREF_CONVERT_MODE);
-                        if (lConvertMode.equals(Preferences.CONVERT_AUTO))
-                        {
-                            lUpgrade.actionPerformed(new ActionEvent(this, 0, null));
-                        }
-                        else if (lConvertMode.equals(Preferences.CONVERT_ASK))
-                        {
-                            int lUserResponse = JOptionPane.showConfirmDialog(application, GuiUtil.getText("action.fileopen.convert"));
-                            switch (lUserResponse)
-                            {
-                                case JOptionPane.OK_OPTION:
-                                    lUpgrade.actionPerformed(new ActionEvent(this, 0, null));
-                                    break;
-                                case JOptionPane.CANCEL_OPTION:
-                                case JOptionPane.CLOSED_OPTION:
-                                default:
-                                    break;
-                            }
-                        }
-                    }
-                    // End conversion.
                 }
                 return true;
             }
