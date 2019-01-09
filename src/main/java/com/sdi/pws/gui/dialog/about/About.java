@@ -41,31 +41,11 @@ public class About
     public About()
     {
         aboutImage.setIcon(new ImageIcon(About.class.getClassLoader().getResource("assets/pwt-about.jpg")));
-        aboutImage.addMouseListener(new MouseAdapter()
-        {
-            @Override
-            public void mouseClicked(MouseEvent aMouseEvent)
-            {
-                Desktop lDesktop = Desktop.getDesktop();
-                if(lDesktop.isSupported(Desktop.Action.BROWSE))
-                {
-                    try
-                    {
-                        lDesktop.browse(new URI("http://www.sdi-consulting.com"));
-                    }
-                    catch(Exception e)
-                    {
-                    }
-
-                }
-            }
-        });
     }
 
     public static void about(JComponent aApp)
     {
         final About lAbout = new About();
-        lAbout.aboutImage.setCursor(Cursor.getPredefinedCursor(Cursor.HAND_CURSOR));
         final JOptionPane lPane = new JOptionPane(lAbout.mainPanel, JOptionPane.PLAIN_MESSAGE, JOptionPane.DEFAULT_OPTION);
 
         final JDialog lDialog = lPane.createDialog(aApp, GuiUtil.getText("about.title"));
